@@ -154,5 +154,5 @@ For more on the GE Link lamps, see their [install guide](http://gelinkbulbs.com/
 
 ## Further Reading
 
-* [Client-Side Programming of the Hue Hub](client.programming.md)
+* [Client-Side Programming of the Hue Hub](client-programming.md)
 * [Server-side Programming of the Hue Hub](server-programming.md) in node.js
