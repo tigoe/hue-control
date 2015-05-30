@@ -42,15 +42,17 @@ And in the Message Body, enter
 You can use any value you want for devicetype or username, but username must be at least ten characters.
 
 Press the link button on the hub and click POST. You should get a response like this:
+```js
 
     [
-		{
-			"success": {
-				"username": "newusername"
-			}
-		}
-	]
-
+    	{
+    		"success": {
+    			"username": "newusername"
+    		}
+    	}
+    ]
+    
+```
 Now you're ready to write code for your hub. Regardless of what environment you're programming in, you'll use the username you established here. 
 
 ## Other Features of the Debug Clip Interface
@@ -141,3 +143,18 @@ The lamp should blink a few times, and then the command line will respond:
     [Link,Touchlink,success,NwkAddr=0x000F,pan=0x2077]
 
 The address and pan may be different for you. Now you can log out of the telnet connection. You can now add the lamp as usual.
+
+## Adding GE Link Lamps to the Hue
+
+You can add [GE Link lamps](http://gelinkbulbs.com/) to the Philips Hue as well, since they communicate using the same ZigBee protocol. To do this, turn the Link lamp on and connect it just as you would a regular Hue lamp. It will show up as _Dimmable Lamp 1_. You'll only be able to control brightness. 
+
+### Resetting GE Link Lamps
+
+If you can't connect a GE Link lamp to your hub, you might need to reset the lamp. To do this, turn the lamp on for three seconds, then off for three seconds. Repeat this several times until the lamp dims down and blinks once. The lamp is now reset. Try to connect again.
+
+For more on the GE Link lamps, see their [install guide](http://gelinkbulbs.com/downloads/GELinkInstallGuide.pdf).
+
+## Further Reading
+
+* [Client-Side Programming of the Hue Hub](client.programming.md)
+* [Server-side Programming of the Hue Hub](server-programming.md) in node.js
