@@ -18,6 +18,8 @@ In order to control lamps through the Hue, you need to understand the Hue light 
     
 The hub will respond with the data on all the lights. Here's one light:
 
+```js
+
     {
       "1": {
         "state": {
@@ -54,10 +56,13 @@ The hub will respond with the data on all the lights. Here's one light:
       }
     }
 
+```
+
 The state object of each light is the part you will manipulate in your code. The [client example](client-example/client-control.js) starts by making this same request for all the lights, then iterating over the result to pull out the light's state in the `getLights()` function. Then it iterates over the state and creates a control for the properties you'd want to control in the `createControl()` function. 
 
 For example, here's the state of the light above:
 
+```js
         "state": {
           "on": false,
           "bri": 254,
@@ -74,6 +79,8 @@ For example, here's the state of the light above:
           "reachable": true
         }
 
+```
+
 The properties that `createControl()` creates controls for are `on`, `bri`, `hue`, `sat`, `ct`, `colormode`, and `reachable`. The last property tells you whether the hub can contact the light in question. If you've turned off the power to a light, the hub will still know it exists, but not be able to reach it or control it. 
 
 When you want to change one of these properties for a given light, you don't have to send the whole object, you can just send the property you want to change in a PUT request. For example, to change the brightness on light number 2, you'd make a PUT request for 
@@ -82,7 +89,11 @@ When you want to change one of these properties for a given light, you don't hav
     
 In the body of your request, you'd send:
 
+```js
+
     { "bri": 127 }
+
+```
 
 Each of the input controls created by `createControl()` calls the same callback, `setLight()`, sending the light number and the change to be made. For example, the brightness input slider calls `setLight()` whenever the mouse is released on the slider handle, sending the property name and value as a JSON object. When the hub responds, setLight() calls `getLights()` again to refresh all of the controls.  
 

@@ -42,7 +42,6 @@ And in the Message Body, enter
 You can use any value you want for devicetype or username, but username must be at least ten characters.
 
 Press the link button on the hub and click POST. You should get a response like this:
-```js
 
     [
     	{
@@ -52,7 +51,6 @@ Press the link button on the hub and click POST. You should get a response like 
     	}
     ]
     
-```
 Now you're ready to write code for your hub. Regardless of what environment you're programming in, you'll use the username you established here. 
 
 ## Other Features of the Debug Clip Interface
