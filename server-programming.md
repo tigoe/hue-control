@@ -52,7 +52,7 @@ The [discovery.js script](server-examples/discovery.js) is a full working exampl
 
 ## Adding and Deleting Users and other Housekeeping Commands
 
-The node-hue-api library also offers an interface for registering new users on the hub, and for deleting users. The [displayUsers.js](server-examples/displayusers) example shows you how to add and delete users. Unless you're making a full turnkey application, though, you might find it easier to register users through the debug clip interface on your hub. 
+The node-hue-api library also offers an interface for registering new users on the hub, and for deleting users. The [displayUsers.js](server-examples/displayUsers.js) example shows you how to add and delete users. Unless you're making a full turnkey application, though, you might find it easier to register users through the debug clip interface on your hub. 
 
 In the server examples directory, you'll find a script called [runcommand.js](server-examples/runcommand.js). This script will let you test out many of the API commands. You'll need to pass the script the IP address and username and the command you want to run like so:
 
@@ -156,7 +156,7 @@ Details of all of these commands can be found in the [node-hue-api documentation
      .done();   
 ```
 
-The [fadeLights.js](server-examples/fadeLights.js) example shows how to set light states using data coming into node.js from a serial port. It assumes you've got some other device attached to the serial port that will send a numeric string, comma-separated, as follows:
+The [fadeLight.js](server-examples/fadeLight.js) example shows how to set light states using data coming into node.js from a serial port. It assumes you've got some other device attached to the serial port that will send a numeric string, comma-separated, as follows:
 
 	lightNumber, red, green, blue, brightness, transitionTime\n
 
