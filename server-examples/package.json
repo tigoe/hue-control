@@ -1,0 +1,16 @@
+{
+  "name": "server-examples",
+  "version": "0.0.1",
+  "description": "Basic server-side examples for node-hue-api",
+  "main": "discovery.js",
+  "dependencies": {
+    "node-hue-api": "^1.0.5",
+    "serialport": "^1.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tom Igoe",
+  "license": "ISC"
+}

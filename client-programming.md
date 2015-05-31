@@ -1,4 +1,4 @@
-# Cient-Side JavaScript Programming for the Philips Hue
+# Client-Side JavaScript Programming for the Philips Hue
 
 Since all of the Hue commands are HTTP requests, you can build browser-based interfaces for it in JavaScript. In [this example](client-example/), I used both P5.js and jQuery to show how the calls could be made with either one. (_also note: at the time of this writing, P5.js' HttpDo() command was not working properl with PUT requests. I expect this will be resolved shortly_). 
 
