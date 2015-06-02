@@ -135,25 +135,25 @@ Details of all of these commands can be found in the [node-hue-api documentation
  The main interface for controlling lights in the node-hue-api library is the lightState object. This object offers all of the Hue light API elements, and adds extra controls for things like seting color using RGB, setting transition times, and more. LightStates are not stored on the hub, but in your code, so you can keep several states in different variables and assign them to different lights or light groups using the `setLightState()` command. You can also chain elements of a lightstate, or re-assign just one element on the fly. For example:
 
 ```js
-	// set a light state of bright red, 100ms fade time:
- 	var state = lightState.create()
-		.rgb(255,0,0)
-		.brightness(100)
-		.transitionTime(100)
-		.on();
+    // set a light state of bright red, 100ms fade time:
+    var state = lightState.create()
+      .rgb(255,0,0)
+      .brightness(100)
+      .transitionTime(100)
+      .on();
 
-	 // use it to set the state of a light on the hub:
-	 hub.setLightState(1, state)
-     .then(displayResult)
-     .done();
+    // use it to set the state of a light on the hub:
+    hub.setLightState(1, state)
+      .then(displayResult)
+      .done();
 
-   // then change the lightState to blue:
-   state.rgb(0,0,255);
+    // then change the lightState to blue:
+    state.rgb(0,0,255);
 
-   // and use it to set a different light:
-	 hub.setLightState(2, state)
-     .then(displayResult)
-     .done();
+    // and use it to set a different light:
+    hub.setLightState(2, state)
+      .then(displayResult)
+      .done();
 ```
 
 The [fadeLight.js](server-examples/fadeLight.js) example shows how to set light states using data coming into node.js from a serial port. It assumes you've got some other device attached to the serial port that will send a numeric string, comma-separated, as follows:
