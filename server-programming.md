@@ -1,10 +1,10 @@
 # Server-Side JavaScript Programming for the Philips Hue
 
-Since the Hue API is made up of HTTP calls, you could control it from [node.js](http://www.nodejs.org) directly just using the HTTPClient class. However, [Peter Murray](https://github.com/peter-murray) has written a nice library for node.js, [node-hue-api](https://github.com/peter-murray/node-hue-api), to simplify the process. This document, and [these examples](server-examples), explain how to use it. 
+Since the Hue API is made up of HTTP calls, you could control it from [node.js](http://www.nodejs.org) directly just using the HTTPClient class. However, [Peter Murray](https://github.com/peter-murray) has written a nice library for node.js, [node-hue-api](https://github.com/peter-murray/node-hue-api), to simplify the process. This document, and [these examples](server-examples), explain how to use it.
 
-The node-hue-api documentation is excellent, and this is not an attempt to replace it. This document includes only a few tips to get started with the library. 
+The node-hue-api documentation is excellent, and this is not an attempt to replace it. This document includes only a few tips to get started with the library.
 
-To use this tutorial and examples, you'll need to have node.js installed. You'll also need a Philips Hue, of course. One of the examples, fadeLights.js, uses a microcontroller attached to a serial port as well. For that example, you'll use the [node-serial](https://github.com/voodootikigod/node-serialport) library. 
+To use this tutorial and examples, you'll need to have node.js installed. You'll also need a Philips Hue, of course. One of the examples, fadeLights.js, uses a microcontroller attached to a serial port as well. For that example, you'll use the [node-serial](https://github.com/voodootikigod/node-serialport) library.
 
 ## Node-Hue-API's Promises
 
@@ -14,12 +14,12 @@ The node-hue-api library uses JavaScript promises. For many of the functions, th
 
     	hueApi.command(parameters)
     		.then(successFunction)
-			.error(errorFunction)			
+			.error(errorFunction)
 			.done(finalFunction);
-		
-``` 
 
-The first line runs the command. When it returns, the second line calls a function, `successFunction()`. If there's an error in the original function, `errorFunction()` is called. When either the success or error functions return, `finalFunction()` is called. You can use traditional callbacks with this library if you don't want to use the promise API. 
+```
+
+The first line runs the command. When it returns, the second line calls a function, `successFunction()`. If there's an error in the original function, `errorFunction()` is called. When either the success or error functions return, `finalFunction()` is called. You can use traditional callbacks with this library if you don't want to use the promise API.
 
 ## General Configuration and Finding Hubs
 
@@ -27,8 +27,8 @@ For most programs using this library, you'll make an instance of the API, then c
 
 ```js
     var hue = require("node-hue-api"),
-		HueApi = hue.HueApi,				
-		hub - = new HueApi(address, username);
+		HueApi = hue.HueApi,
+		hub = new HueApi(address, username);
 ```
 
 To discover hubs on your network, use the `nupnpSearch()` command:
@@ -36,7 +36,7 @@ To discover hubs on your network, use the `nupnpSearch()` command:
 ```js
     	hue.nupnpSearch()
 		.then(displayBridges)
-		.done();		
+		.done();
 ```
 You'll get a result that's a list of all the hubs on your network like so:
 
@@ -46,13 +46,13 @@ You'll get a result that's a list of all the hubs on your network like so:
         "id": "001788fffe0a1745",
         "ipaddress": "192.168.0.4"
       }
-    ]		
+    ]
 ```
 The [discovery.js script](server-examples/discovery.js) is a full working example of how to call `nupnpSearch()`.
 
 ## Adding and Deleting Users and other Housekeeping Commands
 
-The node-hue-api library also offers an interface for registering new users on the hub, and for deleting users. The [displayUsers.js](server-examples/displayUsers.js) example shows you how to add and delete users. Unless you're making a full turnkey application, though, you might find it easier to register users through the debug clip interface on your hub. 
+The node-hue-api library also offers an interface for registering new users on the hub, and for deleting users. The [displayUsers.js](server-examples/displayUsers.js) example shows you how to add and delete users. Unless you're making a full turnkey application, though, you might find it easier to register users through the debug clip interface on your hub.
 
 In the server examples directory, you'll find a script called [runcommand.js](server-examples/runcommand.js). This script will let you test out many of the API commands. You'll need to pass the script the IP address and username and the command you want to run like so:
 
@@ -131,10 +131,10 @@ You can use this script with any of the following commands:
 Details of all of these commands can be found in the [node-hue-api documentation](https://github.com/peter-murray/node-hue-api).
 
 ## Controlling Lights
- 
+
  The main interface for controlling lights in the node-hue-api library is the lightState object. This object offers all of the Hue light API elements, and adds extra controls for things like seting color using RGB, setting transition times, and more. LightStates are not stored on the hub, but in your code, so you can keep several states in different variables and assign them to different lights or light groups using the `setLightState()` command. You can also chain elements of a lightstate, or re-assign just one element on the fly. For example:
 
-```js 
+```js
 	// set a light state of bright red, 100ms fade time:
  	var state = lightState.create()
 		.rgb(255,0,0)
@@ -142,18 +142,18 @@ Details of all of these commands can be found in the [node-hue-api documentation
 		.transitionTime(100)
 		.on();
 
-	// use it to set the state of a light on the hub:
+	 // use it to set the state of a light on the hub:
 	 hub.setLightState(1, state)
      .then(displayResult)
      .done();
-     
+
    // then change the lightState to blue:
    state.rgb(0,0,255);
-   
+
    // and use it to set a different light:
 	 hub.setLightState(2, state)
      .then(displayResult)
-     .done();   
+     .done();
 ```
 
 The [fadeLight.js](server-examples/fadeLight.js) example shows how to set light states using data coming into node.js from a serial port. It assumes you've got some other device attached to the serial port that will send a numeric string, comma-separated, as follows:
@@ -163,8 +163,8 @@ The [fadeLight.js](server-examples/fadeLight.js) example shows how to set light 
 You can use an Arduino or other microcontroller to do this, or you can connect to your computer via Bluetooth serial with a mobile phone or tablet, or any other device you can program to send a serial string.  It assumes your lights are all color lights, not Hue Luxes or GE Links. To run this script, pass it the IP address, username, and serial port when you call it like so:
 
 	node fadeLights.js address username portName
-	
-Then send it serial strings as shown above. Make sure you're also sending the newline at the end, or the `port.on('data')` event won't get called. 
+
+Then send it serial strings as shown above. Make sure you're also sending the newline at the end, or the `port.on('data')` event won't get called.
 
 ## Controlling Lights Directly
 
@@ -172,8 +172,8 @@ If you don't want to use lightStates, you can control lights directly by sending
 
 ```js
 	 var body = {"on": true};
- 
-	 api.setLightState(2, body) 
+
+	 api.setLightState(2, body)
    		.then(successFunction)
    		.fail(failureFunction)
    		.done();
@@ -185,13 +185,13 @@ The JSON you're sending above is just the body of a PUT request for `http://my.h
 
 The node-hue-api library also gives you tools for controlling groups of lights, setting scenes, and setting schedules. Details can be found in the library documentation. Here's a brief overview:
 
-### Groups 
+### Groups
 
-Groups allow you to set all the lights in a group to the same state. It makes it convenient to control lots of lights at once, as long as you don't need variation between them. The group lightState commands are similar to the individual lightState commands. 
+Groups allow you to set all the lights in a group to the same state. It makes it convenient to control lots of lights at once, as long as you don't need variation between them. The group lightState commands are similar to the individual lightState commands.
 
 ### Scenes
 
-Scenes allow you to control multiple lights, each with their own individual lightStates. You need to set each light's state individually, but once lights are assigned to a scene, you can control them all at once using the scene. 
+Scenes allow you to control multiple lights, each with their own individual lightStates. You need to set each light's state individually, but once lights are assigned to a scene, you can control them all at once using the scene.
 
 ### Schedules
 
@@ -214,6 +214,6 @@ Schedules allow you to set a time at which given light states will be triggered.
 	}
 ```
 
-By changing the body of the schedule and the address, you'd change whether you control a light, a group, or a scene. Schedules only allow you to control one group, scene, or light at a time. 
+By changing the body of the schedule and the address, you'd change whether you control a light, a group, or a scene. Schedules only allow you to control one group, scene, or light at a time.
 
-Although these examples don't show how to build web interfaces with node-hue-api, you can combine it with express.js or your favorite server API. Since you can also [control the Hue directly from the client](client-example), this is best reserved for when there are other functions needed that the hue hub server itself can't fulfill. 
+Although these examples don't show how to build web interfaces with node-hue-api, you can combine it with express.js or your favorite server API. Since you can also [control the Hue directly from the client](client-example), this is best reserved for when there are other functions needed that the hue hub server itself can't fulfill.

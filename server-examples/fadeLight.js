@@ -71,7 +71,6 @@ function serialError(error) {
 }
 
 function readData(data) {
-	console.log(data);
 	// read the result:
 	var result = data.split(',');
 	var lightNumber = result[0];
