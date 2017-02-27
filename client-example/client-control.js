@@ -1,5 +1,5 @@
-var url = "";           // the hub IP addres
-var username = ""       // fill in your Hub-given username here
+var url = "128.122.151.161";           // the hub IP address
+var username = "Ytn40SK1LEyg34AnGR95pfOJIolVZEs3Jw1cxOIw"       // fill in your Hub-given username here
 var usernameField;
 var addressField;
 var controlArray = new Array(); // array of light control divs
@@ -45,17 +45,17 @@ this function uses the response from the hub
 to create a new div for the UI elements
 */
 function getLights(result) {
-  var lights = JSON.parse(result);			    // parse the HTTP response
-  var height = 100;
-  for (thisLight in lights) {			          // iterate over each light in the response
-    var controlDiv = createDiv();		        // create a div
-    controlDiv.id(thisLight);				        // name it
-    controlDiv.position(10, height);	        // position it
+  var lights = JSON.parse(result);		// parse the HTTP response
+  var yPos = 100;                     // y position for the div
+  for (thisLight in lights) {			    // iterate over each light in the response
+    var controlDiv = createDiv();		  // create a div
+    controlDiv.id(thisLight);				  // name it
+    controlDiv.position(10, yPos);	          // position it
     controlDiv.html(lights[thisLight].name);	// set the HTML in it
-    controlArray.push(controlDiv);           // add it to array of light controls
+    controlArray.push(controlDiv);    // add it to array of light controls
     // create the controls inside it:
     createControl(lights[thisLight], controlDiv);
-    height += controlDiv.height;				// increment height for the next div
+    yPos += controlDiv.height;				// increment yPos for the next div
   }
 }
 
@@ -64,50 +64,51 @@ this function creates UI controls from the lights data
 returned by the hub
 */
 function createControl(thisLight, thisDiv) {
-  var state = thisLight.state;		// state of this light
-  var myLabel, myInput,           // each control will get a label and input
-  x = 0,                        // and an x-y position
-  y = 10;
+  var state = thisLight.state;	// state of this light
+  var myLabel;                  // each control will get a label
+  var myInput;                  // and input
+  var x = 0;                    // and an x-y position
+  var y = 10;
 
   for (property in state) {     // iterate over  properties in state object
     myInput = null;             // clear myInput from previous control
     switch (property) {         // handle the cases you care about
       case 'on':
-      myInput = createInput();  // an input for the on property
-      myInput.attribute('type', 'checkbox');    // make this input a checkbox
-      myInput.attribute('checked', state.on);	  // is called 'checked'
-      myInput.mouseClicked(changeProperty); // set the mouseClicked callback
-      x = 120;      // the on checkbox has a special position
-      y = 0;        // and it sits at the top of the div
-      break;
+        myInput = createInput();  // an input for the on property
+        myInput.attribute('type', 'checkbox');    // make this input a checkbox
+        myInput.attribute('checked', state.on);	  // is called 'checked'
+        myInput.mouseClicked(changeProperty); // set the mouseClicked callback
+        x = 120;      // the on checkbox has a special position
+        y = 0;        // and it sits at the top of the div
+        break;
       case 'bri':
-      myInput = createSlider(0, 254, state.bri);	// a slider for brightness
-      myInput.mouseReleased(changeProperty); // set the mouseClicked callback
-      x = 10;       // all the other inputs start at the left edge
-      break;
+        myInput = createSlider(0, 254, state.bri);	// a slider for brightness
+        myInput.mouseReleased(changeProperty); // set the mouseClicked callback
+        x = 10;       // all the other inputs start at the left edge
+        break;
       case 'hue':
-      myInput = createSlider(0, 65535,state.hue);	// a slider for hue
-      myInput.mouseReleased(changeProperty); // set the mouseClicked callback
-      break;
+        myInput = createSlider(0, 65535,state.hue);	// a slider for hue
+        myInput.mouseReleased(changeProperty); // set the mouseClicked callback
+        break;
       case 'sat':
-      myInput = createSlider(0, 254,state.sat);		// a slider for saturation
-      myInput.mouseReleased(changeProperty); // set the mouseClicked callback
-      break;
+        myInput = createSlider(0, 254,state.sat);		// a slider for saturation
+        myInput.mouseReleased(changeProperty); // set the mouseClicked callback
+        break;
       case 'ct':
-      myInput = createSlider(153, 500,state.ct);	// a slider for color temp
-      myInput.mouseReleased(changeProperty); // set the mouseClicked callback
-      break;
+        myInput = createSlider(153, 500,state.ct);	// a slider for color temp
+        myInput.mouseReleased(changeProperty); // set the mouseClicked callback
+        break;
       case 'colormode':
-      myInput = createSpan(state.colormode);	// a label for colormode
-      break;
+        myInput = createSpan(state.colormode);	// a label for colormode
+        break;
       case 'reachable':
-      myInput = createSpan(state.reachable);	// a label for reachable
-      break;
+        myInput = createSpan(state.reachable);	// a label for reachable
+        break;
     }
 
     // you only created inputs for the fields in the switch statement
     // above, so this conditional filters for those:
-    if (myInput) {
+    if (myInput != null) {
       myLabel = createSpan(property);     // create a label span
       myInput.id(property);               // give the input an id
       thisDiv.child(myLabel);		    // add the label to the light's div
@@ -117,7 +118,7 @@ function createControl(thisLight, thisDiv) {
       y += 20;                      // increment the y position
     }
   }
-  thisDiv.size(113, y+20);       // resize the div with a little padding
+  thisDiv.size(200, y+20);       // resize the div with a little padding
 }
 
 
