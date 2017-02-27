@@ -1,21 +1,25 @@
-var url, username, address,
-  lightsDiv,
-  height = 10;
+var url = "128.122.151.161";           // the hub IP addres
+var username = "Ytn40SK1LEyg34AnGR95pfOJIolVZEs3Jw1cxOIw"       // fill in your Hub-given username here
+var usernameField;
+var addressField;
+var controlArray = new Array(); // array of light control divs
 
 function setup() {
   var addressLabel, nameLabel, connectButton;
   noCanvas();
-  // set up the address and username boxes:
-  address = createInput();
+  // set up the address and username fields:
+  addressField = createInput();
   addressLabel = createSpan("IP address:");
   addressLabel.position(10,10);
-  address.position(100, 10);
-  address.attribute('type', 'text');
-  userName = createInput();
+  addressField.position(100, 10);
+  addressField.attribute('type', 'text');
+  usernameField = createInput();
   nameLabel = createSpan("user name:");
   nameLabel.position(10,40);
-  userName.position(100, 40);
-  userName.attribute('type', 'text');
+  usernameField.position(100, 40);
+  usernameField.attribute('type', 'text');
+  usernameField.value(username);
+  addressField.value(url);
 
   // set up the connect button:
   connectButton = createButton("connect");
@@ -28,29 +32,30 @@ this function makes the HTTP GET call
 to get the light data
 */
 function connect() {
-  lightsDiv = null;     // clear the lights div on reconnect
-  height = 100;
-  url = "http://" + address.value() + '/api/' + userName.value() + '/lights/';
+  for (control in controlArray) {
+    controlArray[control].remove();     // clear the lights div on reconnect
+  }
+  controlArray = [];      // clear the control array
+  url = "http://" + addressField.value() + '/api/' + usernameField.value() + '/lights/';
   httpGet(url, getLights);
 }
 
 /*
 this function uses the response from the hub
-to creat a new div for the UI elements
+to create a new div for the UI elements
 */
 function getLights(result) {
   var lights = JSON.parse(result);			    // parse the HTTP response
+  var height = 100;
   for (thisLight in lights) {			          // iterate over each light in the response
-    lightsDiv = createDiv();		        // create a div
-    lightsDiv.id(thisLight);				        // name it
-    lightsDiv.position(10, height);	        // position it
-    lightsDiv.html(lights[thisLight].name);	// set the HTML in it
-
-    // create the controls inside it. createControls() returns the
-    // height of the div that it creates, so you can use its result
-    // to position the next div:
-    var divHeight = createControl(lights[thisLight], lightsDiv);
-    height += divHeight + 20;				         // increment height for the next div
+    var controlDiv = createDiv();		        // create a div
+    controlDiv.id(thisLight);				        // name it
+    controlDiv.position(10, height);	        // position it
+    controlDiv.html(lights[thisLight].name);	// set the HTML in it
+    controlArray.push(controlDiv);           // add it to array of light controls
+    // create the controls inside it:
+    createControl(lights[thisLight], controlDiv);
+    height += controlDiv.height;				// increment height for the next div
   }
 }
 
@@ -64,7 +69,7 @@ function createControl(thisLight, thisDiv) {
   x = 0,                        // and an x-y position
   y = 10;
 
-  for (property in state) {     // iterate over the properties in the state object
+  for (property in state) {     // iterate over  properties in state object
     myInput = null;             // clear myInput from previous control
     switch (property) {         // handle the cases you care about
       case 'on':
@@ -108,12 +113,11 @@ function createControl(thisLight, thisDiv) {
       thisDiv.child(myLabel);		    // add the label to the light's div
       thisDiv.child(myInput);		    // add the input to the light's div
       myLabel.position(x, y);       // position the label
-      myInput.position(x + 100, y);  // position the input
+      myInput.position(x + 100, y); // position the input
       y += 20;                      // increment the y position
     }
   }
-  return y;         // return the y position so the calling function
-  // knows how big this div is vertically
+  thisDiv.size(113, y+20);       // resize the div with a little padding
 }
 
 
@@ -149,24 +153,14 @@ function setLight(lightNumber, data) {
   var content = JSON.stringify(data);				  // convert JSON obj to string
   // HttpDo seems to have a bug in it when it comes to PUT, so I've
   // used jQuery instead here.
-
-  // httpDo( path, 'PUT', content, 'json', function(response) {
-  //   println(response);
-  //   getLights();
-  // });
+  //httpDo( path, 'PUT', content, 'text', getLights);
 
   var requestParams = {
     type: "PUT",					  // use the PUT method
     url: path,						  // URL to call
     data: content,					// body of the request
-    dataType: 'text/json'		// data type of the body
+    dataType: 'text'		// data type of the body
   };
 
-  function reply(response) {
-    // callback function
-    println('response: ' + response);		// server (hub) response
-    getLights();				// refresh the lights from the hub
-  }
-
-  var request = $.ajax(requestParams, reply);
+  var request = $.ajax(requestParams, getLights);
 }
