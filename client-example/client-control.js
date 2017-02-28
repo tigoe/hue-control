@@ -34,7 +34,7 @@ function connect() {
   for (control in controlArray) {
     controlArray[control].remove(); // clear the lights div on reconnect
   }
-  controlArray = [];      // clear the control array
+  controlArray = [];                // clear the control array
   url = "http://" + addressField.value() + '/api/' + usernameField.value() + '/lights/';
   httpGet(url, getLights);
 }
@@ -117,23 +117,27 @@ function createControl(thisLight, thisDiv) {
     // you only created inputs for the fields in the switch statement
     // above, so this conditional filters for those:
     if (myInput != null) {
-      myLabel = createSpan(property);     // create a label span
-      myInput.id(property);               // give the input an id
-      thisDiv.child(myLabel);		    // add the label to the light's div
-      thisDiv.child(myInput);		    // add the input to the light's div
-      myLabel.position(x, y);       // position the label
+      myLabel = createSpan(property);   // create a label span
+      myInput.id(property);             // give the input an id
+      thisDiv.child(myLabel);		        // add the label to the light's div
+      thisDiv.child(myInput);		        // add the input to the light's div
+      myLabel.position(x, y);           // position the label
       myInput.position(x + xIndent, y); // position the input
-      y += 20;                      // increment the y position
+      y += 20;                          // increment the y position
     }
-  }   // end of for loop to create controls
+  }   // end of for-loop to create controls
   thisDiv.size(250, y+20);       // resize the div with a little padding
 }
 
+/*
+  This function formats the name change request, then calls
+  the request.
+*/
 function changeName() {
     var lightName = event.target.value;				// what did you click on?
     var thisLight = event.target.parentNode.id;	// get the parent (light number)
     var payload = {"name": lightName};        // form the name payload
-    nameLight(thisLight, payload);            // make the HTTP call
+    setLight(thisLight, payload, 'name');     // make the HTTP call
 }
 
 /*
@@ -156,36 +160,15 @@ function changeProperty() {
     payload[thisControl] = event.target.checked;
   }
 
-  setLight(thisLight, payload);						// make the HTTP call
+  setLight(thisLight, payload, 'state');	// make the HTTP call
 }
 
 /*
 this function makes an HTTP PUT call to change
-the properties of the lights' states
+the properties of the lights
 */
-function setLight(lightNumber, data) {
-  var path = url + lightNumber + '/state';		// assemble the full URL
-  var content = JSON.stringify(data);				  // convert JSON obj to string
-  // HttpDo seems to have a bug in it when it comes to PUT, so I've
-  // used jQuery instead here.
-  //httpDo( path, 'PUT', content, 'text', getLights);
-
-  var requestParams = {
-    type: "PUT",					  // use the PUT method
-    url: path,						  // URL to call
-    data: content,					// body of the request
-    dataType: 'text'		// data type of the body
-  };
-
-  var request = $.ajax(requestParams, getLights);
-}
-
-/*
-this function makes an HTTP PUT call to change
-the name of the lights
-*/
-function nameLight(lightNumber, data) {
-  var path = url + lightNumber + '/name';		// assemble the full URL
+function setLight(lightNumber, data, command) {
+  var path = url + lightNumber + '/' + command;		// assemble the full URL
   var content = JSON.stringify(data);				  // convert JSON obj to string
   // HttpDo seems to have a bug in it when it comes to PUT, so I've
   // used jQuery instead here.
