@@ -30,8 +30,9 @@ this function makes the HTTP GET call
 to get the light data
 */
 function connect() {
+  this.html("refresh");             // change the connect button to 'refresh'
   for (control in controlArray) {
-    controlArray[control].remove();     // clear the lights div on reconnect
+    controlArray[control].remove(); // clear the lights div on reconnect
   }
   controlArray = [];      // clear the control array
   url = "http://" + addressField.value() + '/api/' + usernameField.value() + '/lights/';
