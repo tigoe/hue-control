@@ -1,5 +1,5 @@
-var url = "128.122.151.161";           // the hub IP address
-var username = "Ytn40SK1LEyg34AnGR95pfOJIolVZEs3Jw1cxOIw"       // fill in your Hub-given username here
+var url = "";           // the hub IP address
+var username = ""       // fill in your Hub-given username here
 var usernameField;
 var addressField;
 var controlArray = new Array(); // array of light control divs
@@ -8,16 +8,14 @@ function setup() {
   var addressLabel, nameLabel, connectButton;
   noCanvas();
   // set up the address and username fields:
-  addressField = createInput();
+  addressField = createInput('text');
   addressLabel = createSpan("IP address:");
   addressLabel.position(10,10);
   addressField.position(100, 10);
-  addressField.attribute('type', 'text');
-  usernameField = createInput();
+  usernameField = createInput('text');
   nameLabel = createSpan("user name:");
   nameLabel.position(10,40);
   usernameField.position(100, 40);
-  usernameField.attribute('type', 'text');
   usernameField.value(username);
   addressField.value(url);
 
@@ -48,11 +46,17 @@ function getLights(result) {
   var lights = JSON.parse(result);		// parse the HTTP response
   var yPos = 100;                     // y position for the div
   for (thisLight in lights) {			    // iterate over each light in the response
-    var controlDiv = createDiv();		  // create a div
+    var controlDiv = createDiv('');		// create a div
     controlDiv.id(thisLight);				  // name it
-    controlDiv.position(10, yPos);	          // position it
-    controlDiv.html(lights[thisLight].name);	// set the HTML in it
+    controlDiv.position(10, yPos);	  // position it
     controlArray.push(controlDiv);    // add it to array of light controls
+    // create an input field:
+    var nameField = createInput(lights[thisLight].name, 'text');
+    nameField.id(lights[thisLight].name);  // give the input a value
+    controlDiv.child(nameField);		  // add the field to the light's div
+    nameField.position(0, 0);         // position the field
+    nameField.mouseReleased(changeName);   // add a mouseReleased behavior
+
     // create the controls inside it:
     createControl(lights[thisLight], controlDiv);
     yPos += controlDiv.height;				// increment yPos for the next div
@@ -69,6 +73,7 @@ function createControl(thisLight, thisDiv) {
   var myInput;                  // and input
   var x = 0;                    // and an x-y position
   var y = 10;
+  var xIndent = 100;            // distance from label to control
 
   for (property in state) {     // iterate over  properties in state object
     myInput = null;             // clear myInput from previous control
@@ -78,13 +83,15 @@ function createControl(thisLight, thisDiv) {
         myInput.attribute('type', 'checkbox');    // make this input a checkbox
         myInput.attribute('checked', state.on);	  // is called 'checked'
         myInput.mouseClicked(changeProperty); // set the mouseClicked callback
-        x = 120;      // the on checkbox has a special position
+        x = 200;      // the on checkbox has a special position
         y = 0;        // and it sits at the top of the div
+        xIndent = 20; // and closer to its label
         break;
       case 'bri':
         myInput = createSlider(0, 254, state.bri);	// a slider for brightness
         myInput.mouseReleased(changeProperty); // set the mouseClicked callback
         x = 10;       // all the other inputs start at the left edge
+        xIndent = 100;
         break;
       case 'hue':
         myInput = createSlider(0, 65535,state.hue);	// a slider for hue
@@ -114,13 +121,19 @@ function createControl(thisLight, thisDiv) {
       thisDiv.child(myLabel);		    // add the label to the light's div
       thisDiv.child(myInput);		    // add the input to the light's div
       myLabel.position(x, y);       // position the label
-      myInput.position(x + 100, y); // position the input
+      myInput.position(x + xIndent, y); // position the input
       y += 20;                      // increment the y position
     }
-  }
-  thisDiv.size(200, y+20);       // resize the div with a little padding
+  }   // end of for loop to create controls
+  thisDiv.size(250, y+20);       // resize the div with a little padding
 }
 
+function changeName() {
+    var lightName = event.target.value;				// what did you click on?
+    var thisLight = event.target.parentNode.id;	// get the parent (light number)
+    var payload = {"name": lightName};        // form the name payload
+    nameLight(thisLight, payload);            // make the HTTP call
+}
 
 /*
 this function uses the UI elements to change
@@ -128,7 +141,7 @@ the properties of the lights
 */
 function changeProperty() {
   var thisControl = event.target.id;				// what did you click on?
-  var thisLight = event.target.parentNode.id;	// get the parent, for the light number
+  var thisLight = event.target.parentNode.id;	// get the parent (light number)
   var value = event.target.value;					// get the value
 
   // make a new payload:
@@ -147,10 +160,31 @@ function changeProperty() {
 
 /*
 this function makes an HTTP PUT call to change
-the properties of the lights
+the properties of the lights' states
 */
 function setLight(lightNumber, data) {
   var path = url + lightNumber + '/state';		// assemble the full URL
+  var content = JSON.stringify(data);				  // convert JSON obj to string
+  // HttpDo seems to have a bug in it when it comes to PUT, so I've
+  // used jQuery instead here.
+  //httpDo( path, 'PUT', content, 'text', getLights);
+
+  var requestParams = {
+    type: "PUT",					  // use the PUT method
+    url: path,						  // URL to call
+    data: content,					// body of the request
+    dataType: 'text'		// data type of the body
+  };
+
+  var request = $.ajax(requestParams, getLights);
+}
+
+/*
+this function makes an HTTP PUT call to change
+the name of the lights
+*/
+function nameLight(lightNumber, data) {
+  var path = url + lightNumber + '/name';		// assemble the full URL
   var content = JSON.stringify(data);				  // convert JSON obj to string
   // HttpDo seems to have a bug in it when it comes to PUT, so I've
   // used jQuery instead here.
