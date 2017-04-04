@@ -1,5 +1,5 @@
-var url = "";           // the hub IP address
-var username = ""       // fill in your Hub-given username here
+var url = '';           // the hub IP address
+var username = '';       // fill in your Hub-given username here
 var usernameField;
 var addressField;
 var controlArray = new Array(); // array of light control divs
@@ -36,7 +36,7 @@ function connect() {
   }
   controlArray = [];                // clear the control array
   url = "http://" + addressField.value() + '/api/' + usernameField.value() + '/lights/';
-  httpGet(url, getLights);
+  httpDo(url, 'GET', getLights);
 }
 
 /*
@@ -44,6 +44,7 @@ this function uses the response from the hub
 to create a new div for the UI elements
 */
 function getLights(result) {
+  console.log(result);
   var lights = JSON.parse(result);		// parse the HTTP response
   var yPos = 100;                     // y position for the div
   for (thisLight in lights) {			    // iterate over each light in the response
@@ -169,17 +170,6 @@ the properties of the lights
 */
 function setLight(lightNumber, data, command) {
   var path = url + lightNumber + '/' + command;		// assemble the full URL
-  var content = JSON.stringify(data);				  // convert JSON obj to string
-  // HttpDo seems to have a bug in it when it comes to PUT, so I've
-  // used jQuery instead here.
-  //httpDo( path, 'PUT', content, 'text', getLights);
-
-  var requestParams = {
-    type: "PUT",					  // use the PUT method
-    url: path,						  // URL to call
-    data: content,					// body of the request
-    dataType: 'text'		// data type of the body
-  };
-
-  var request = $.ajax(requestParams, getLights);
+  var content = JSON.stringify(data);				 // convert JSON obj to string
+  httpDo( path, 'PUT', content, 'text', getLights); //HTTP PUT the change
 }
