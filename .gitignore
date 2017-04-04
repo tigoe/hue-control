@@ -2,3 +2,4 @@ server-examples/node_modules/*
 users.txt
 
 ArduinoHTTPClient-example/config.h
+*/node_modules/*
