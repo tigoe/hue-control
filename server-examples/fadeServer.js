@@ -23,17 +23,18 @@ var hub; 															// will hold the hub info when you instantiate it
 var lightState = hue.lightState;
 
 var address = '192.168.0.1';								// enter your IP address here
-var username = 'myreallylongusername'						// your app's username
+var username = 'myreallylongusername';		  // your app's username
 
 var express = require('express');           // include the express library
 var server = express();					            // create a server using express
 
 // set a light's state using parameters given:
 function setLight(request, response) {
-	var thisLight = request.params.light;
-	var thisBri = request.params.level;
-	var thisTime = request.params.time;
-	var parameters = request.params;
+	var parameters = request.params;		// get request parameters
+	var thisLight = parameters.light;		// get light number from request
+	var thisBri = parameters.level;			// get level
+	var thisTime = parameters.time;			// get time
+
 	// create a lightstate object:
 	var state = lightState.create()
 		.brightness(thisBri)
