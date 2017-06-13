@@ -1,5 +1,5 @@
-var url = '';           // the hub IP address
-var username = '';       // fill in your Hub-given username here
+var url = '128.122.151.161';           // the hub IP address
+var username = '8xCZjcw-029pD2JPUjD7zHe6zFMxAFUxOHq53L3W';       // fill in your Hub-given username here
 var usernameField;
 var addressField;
 var controlArray = new Array(); // array of light control divs
