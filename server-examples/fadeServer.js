@@ -52,7 +52,6 @@ function setLight(request, response) {
 		.done(sendResponse);
 }
 
-
 // instantiate the hub:
 hub = new HueApi(address, username);
 server.listen(8080);                        // listen for HTTP

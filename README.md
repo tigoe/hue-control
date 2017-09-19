@@ -4,17 +4,17 @@ Philips [Hue lighting system](http://www2.meethue.com/en-us/) allows you to cont
 
 ## Useful Tools
 
-To get started programming Hue apps, you'll need access to a Hue hub. You'll want a [Hue account](https://my.meethue.com/en-us/) too.  Keep the [Hue Developers Site](http://www.developers.meethue.com/) link handy. 
+To get started programming Hue apps, you'll need access to a Hue hub. You'll want a [Hue account](https://my.meethue.com/en-us/) too.  Keep the [Hue Developers Site](http://www.developers.meethue.com/) link handy.
 
 The Hue app for [Android](https://play.google.com/store/apps/details?id=com.philips.lighting.hue&hl=en) or [iOS](https://itunes.apple.com/us/app/philips-hue/id557206189?mt=8) is helpful when developing, because it works when your app doesn't yet.
 
-Every Hue has a debug interface, available at 
+Every Hue has a debug interface, available at
 
     http://my.hub.ip.address/debug/clip.html
 
-Replace my.hub.ip.address with your hub's IP address. When you're developing, you can use this to send API command to the hub to test things out. 
+Replace my.hub.ip.address with your hub's IP address. When you're developing, you can use this to send API command to the hub to test things out.
 
-Bookmark the full [Hue API documentation](http://www.developers.meethue.com/philips-hue-api) You'll need to log in for this, but it's very well documented. 
+Bookmark the full [Hue API documentation](http://www.developers.meethue.com/philips-hue-api) You'll need to log in for this, but it's very well documented.
 
 
 Peter Murray's [node-hue-api library](https://github.com/peter-murray/node-hue-api) for node.js is the best of the various client-side JavaScript libraries I've tested for controlling the Hue.
@@ -25,17 +25,17 @@ Other than these, you'll need to know some HTML and JavaScript, and a text edito
 
 Your app will need to be identified to your hub using a unique username. Follow the developer site's [Getting Started instructions](http://www.developers.meethue.com/documentation/getting-started) to add a new app/username to your hub. Here they are in brief:
 
-Open a browser and connect to the hub's debug interface: 
+Open a browser and connect to the hub's debug interface:
 
     http://my.hub.ip.address/debug/clip.html
-    
+
 ![Hue debug clip interface](images/debug_clip.png)
 
 In the URL field, enter:
 
     /api
 
-And in the Message Body, enter 
+And in the Message Body, enter
 
     {"devicetype":"my app", "username":"newusername"}
 
@@ -50,31 +50,31 @@ Press the link button on the hub and click POST. You should get a response like 
     		}
     	}
     ]
-    
-Now you're ready to write code for your hub. Regardless of what environment you're programming in, you'll use the username you established here. 
+
+Now you're ready to write code for your hub. Regardless of what environment you're programming in, you'll use the username you established here.
 
 ## Other Features of the Debug Clip Interface
 
 The debug clip interface can be used to send any API command to your hub. The general query string is as follows:
 
     /api/username/command
-    
+
 Generally, querying the state of the device is done using GET commands, and changing them is done using PUT. For example, to query the state of all your lights, enter the following in the URL field:
 
     /api/username/lights
-    
- And click GET. To query the configuration, enter: 
- 
+
+ And click GET. To query the configuration, enter:
+
      /api/username/config
- 
+
 And click GET.  To turn on light 1, enter the following in the URL field:
 
     /api/username/lights/1/state
-    
+
 And enter the following in the Message Body field:
 
     {"on":true}
-    
+
 And click PUT. The light should come on, and the hub should reply:
 
 	[
@@ -84,8 +84,8 @@ And click PUT. The light should come on, and the hub should reply:
 			}
 		}
 	]
-	
-For more on the Hue API, see the [Hue Getting Started guide](http://www.developers.meethue.com/documentation/getting-started),  the [Hue API Core Concepts](http://www.developers.meethue.com/documentation/core-concepts), and the full [Hue API documentation](http://www.developers.meethue.com/philips-hue-api) (you'll need to log in for this). 
+
+For more on the Hue API, see the [Hue Getting Started guide](http://www.developers.meethue.com/documentation/getting-started),  the [Hue API Core Concepts](http://www.developers.meethue.com/documentation/core-concepts), and the full [Hue API documentation](http://www.developers.meethue.com/philips-hue-api) (you'll need to log in for this).
 
 ## Adding a Hub to a MAC Address-Filtered Network
 
@@ -96,29 +96,31 @@ The network at the school where I teach is not an open DNS network; instead, all
 Enter this address in whatever registration interface your network requires, then wait a few minutes and your hub should have an IP address. To check for it, make sure your computer is on the same network, open a command line interface (like Terminal in OSX) and type:
 
     $ arp -a
-    
+
+**NOTE**: for this to work, your computer needs to be on the same local network as your Hue hub. That means that to use this method of searching, your laptop has to be on the same wired network as the hue hub. You might need a USB or thunderbolt-wired ethernet adapter to sniff out the hubs using arp, if your wireless network is not the same local net as your wired network (this is the case in many universities and larger institutions).
+
 You'll get a list of all the devices on the same network that your computer can see. Look for the one that matches the MAC address of your hub, and the IP address next to it will be your hub's IP address, like so:
 
     $ arp -a
 	? (192.168.0.1) at ac:b7:16:61:e3:77 on en0 ifscope [ethernet]
 	? (192.168.0.3) at 00:17:88:0B:14:48 on en0 ifscope [ethernet]
 	? (192.168.0.255) at ff:ff:ff:ff:ff:ff on en0 ifscope [ethernet]
-	
-In this case, the hue's IP address is 192.168.0.3. 
+
+In this case, the hue's IP address is 192.168.0.3.
 
 ## Adding a Lamp to a Hub
 
 You can add lamps to the hub using the regular mobile Hue app. You can also do it from the debug clip interface using a GET request on the following URL:
 
     /api/username/lights/new
- 
+
 ## Deleting a Lamp from a Hub
 
 You can delete a lamp from a hub from the debug clip interface using a DELETE request on the following URL:
 
     /api/username/lights/1
-   
-Replace 1 with the number of the light you wish to delete. 
+
+Replace 1 with the number of the light you wish to delete.
 
 ## Capturing a Lamp From Another Hub
 
@@ -126,7 +128,7 @@ _instructions based on information from  [NoHats blog](https://nohats.ca/wordpre
 
 There's no way to delete one lamp at a time from a hub, and when a lamp is associated with another hub, you can't re-assign it to another hub through the mobile app. But you can effect a "hostile takeover" as follows:
 
-Place the lamp close to the hub with which you want to control it (closer than 30cm, or 1 ft). Turn off all other lamps connected to the hub, or make sure they're much further away than the one you want. 
+Place the lamp close to the hub with which you want to control it (closer than 30cm, or 1 ft). Turn off all other lamps connected to the hub, or make sure they're much further away than the one you want.
 * using a command line interface, telnet into the hub on port 30000 like so:
 
     $ telnet my.hub.ip.address 30000
@@ -144,7 +146,7 @@ The address and pan may be different for you. Now you can log out of the telnet 
 
 ## Adding GE Link Lamps to the Hue
 
-You can add [GE Link lamps](http://gelinkbulbs.com/) to the Philips Hue as well, since they communicate using the same ZigBee protocol. To do this, turn the Link lamp on and connect it just as you would a regular Hue lamp. It will show up as _Dimmable Lamp 1_. You'll only be able to control brightness. 
+You can add [GE Link lamps](http://gelinkbulbs.com/) to the Philips Hue as well, since they communicate using the same ZigBee protocol. To do this, turn the Link lamp on and connect it just as you would a regular Hue lamp. It will show up as _Dimmable Lamp 1_. You'll only be able to control brightness.
 
 ### Resetting GE Link Lamps
 
