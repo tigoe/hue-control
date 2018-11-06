@@ -124,25 +124,20 @@ Replace 1 with the number of the light you wish to delete.
 
 ## Capturing a Lamp From Another Hub
 
-_instructions based on information from  [NoHats blog](https://nohats.ca/wordpress/blog/2013/05/26/philips-hue-alternative-for-lamp-stealer/)_
-
-There's no way to delete one lamp at a time from a hub, and when a lamp is associated with another hub, you can't re-assign it to another hub through the mobile app. But you can effect a "hostile takeover" as follows:
+To re-capture a lamp that has been previously connected to a different hub, do the following:
 
 Place the lamp close to the hub with which you want to control it (closer than 30cm, or 1 ft). Turn off all other lamps connected to the hub, or make sure they're much further away than the one you want.
-* using a command line interface, telnet into the hub on port 30000 like so:
 
-    $ telnet my.hub.ip.address 30000
+Send the following the debug clip interface using a PUT request:
 
-When you connect, type:
+    /api/username/config/
 
-     [Link,Touchlink]
+In the body of your request put:
+
+    {"touchlink": true}
 
 
-The lamp should blink a few times, and then the command line will respond:
-
-    [Link,Touchlink,success,NwkAddr=0x000F,pan=0x2077]
-
-The address and pan may be different for you. Now you can log out of the telnet connection. You can now add the lamp as usual.
+The lamp should blink a few times, and theserver will respond with a success message. You can now add the lamp as usual.
 
 ## Adding GE Link Lamps to the Hue
 
