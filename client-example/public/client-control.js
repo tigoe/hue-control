@@ -1,5 +1,5 @@
-var url = '128.122.151.161';           // the hub IP address
-var username = '8xCZjcw-029pD2JPUjD7zHe6zFMxAFUxOHq53L3W';       // fill in your Hub-given username here
+var url = '192.168.0.12';           // the hub IP address
+var username = 'your-hue-username-here';
 var usernameField;
 var addressField;
 var controlArray = new Array(); // array of light control divs
@@ -44,7 +44,6 @@ this function uses the response from the hub
 to create a new div for the UI elements
 */
 function getLights(result) {
-  console.log(result);
   var lights = JSON.parse(result);		// parse the HTTP response
   var yPos = 100;                     // y position for the div
   for (thisLight in lights) {			    // iterate over each light in the response
@@ -171,5 +170,10 @@ the properties of the lights
 function setLight(lightNumber, data, command) {
   var path = url + lightNumber + '/' + command;		// assemble the full URL
   var content = JSON.stringify(data);				 // convert JSON obj to string
-  httpDo( path, 'PUT', content, 'text', getLights); //HTTP PUT the change
+  httpDo( path, 'PUT', content, 'text', getResponse); //HTTP PUT the change
+}
+
+function getResponse(response) {
+  // show response:
+  console.log(response);
 }

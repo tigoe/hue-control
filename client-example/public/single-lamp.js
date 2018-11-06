@@ -1,5 +1,5 @@
-var url = '172.22.151.104';           // the hub IP address
-var username = 'mLhRJo8lrkVBxICxjtrLhfpX1qrdnY0ZDw-GYeGr';       // fill in your Hub-given username var resultDiv;
+var url = '192.168.0.12';           // the hub IP address
+var username = 'your-hue-username-here';    // fill in your Hub-given username var resultDiv;
 var dimmer;
 var lightNumber = 3;
 
