@@ -7,3 +7,5 @@ ArduinoHTTPClient-example/config.h
 .vscode/c_cpp_properties.json
 client-example/.DS_Store
 server-examples/.DS_Store
+*/config.h
+*/arduino_secrets.h
