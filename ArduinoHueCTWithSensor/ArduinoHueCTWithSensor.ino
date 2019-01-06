@@ -99,7 +99,7 @@ void loop() {
     // convert color temp to mired value:
     String mired = String(1000000 / colorTemp);
     Serial.println("mired: " + mired);
-    // send the change request:
+    // send the change request on lights 6 and 8 (randomly chosen):
     sendRequest(6, "ct", mired);
     sendRequest(8, "ct", mired);
   }
