@@ -53,7 +53,7 @@ HttpClient httpClient = HttpClient(wifi, hueHubIP);
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
-// start sensor:
+  // start sensor:
   while (!tcs.begin()) {
     Serial.println("Looking for sensor...");
     delay(100);
@@ -88,7 +88,7 @@ void loop() {
     tcs.getRawData(&r, &g, &b, &c);
     int colorTemp = tcs.calculateColorTemperature_dn40(r, g, b, c);
     lux = tcs.calculateLux(r, g, b);
-    
+
     // print result to the display:
     String reading = "CT: ";
     reading += String(colorTemp);
