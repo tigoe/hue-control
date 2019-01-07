@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 420.9 420.9"
+	 style="enable-background:new 0 0 420.9 420.9;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-width:0.9;stroke-linecap:round;stroke-linejoin:round;}
+	.st2{font-family:'ArialMT';}
+	.st3{font-size:3.5px;}
+	.st4{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}
+	.st5{fill:none;}
+	.st6{font-size:5.2401px;}
+	.st7{font-size:11.8661px;}
+	.st8{font-size:9.4929px;}
+</style>
+<symbol  id="line" viewBox="-0.5 -7.5 1 15">
+	<line class="st0" x1="0" y1="7" x2="0" y2="-7"/>
+</symbol>
+<rect x="320.4" y="318" class="st1" width="57.2" height="50.4"/>
+<g id="label">
+	<text transform="matrix(1 0 0 1 341.6143 337.3898)" class="st2 st3">Adafruit</text>
+</g>
+<g id="label_1_">
+	<text transform="matrix(1 0 0 1 342.8799 340.8898)" class="st2 st3">OLED</text>
+</g>
+<g id="label_2_">
+	<text transform="matrix(1 0 0 1 337.4327 344.3898)" class="st2 st3">Monochrome</text>
+</g>
+<g id="label_3_">
+	<text transform="matrix(1 0 0 1 341.9044 347.8898)" class="st2 st3">128x32</text>
+</g>
+<g id="label_4_">
+	<text transform="matrix(1 0 0 1 344.9219 351.3898)" class="st2 st3">I2C</text>
+</g>
+<line class="st4" x1="391.6" y1="332.4" x2="377.5" y2="332.4"/>
+<g id="label8">
+	<text transform="matrix(1 0 0 1 364.1096 334.0896)" class="st2 st3">RESET</text>
+</g>
+<line class="st4" x1="320.3" y1="332.4" x2="305.9" y2="332.4"/>
+<g id="label10">
+	<text transform="matrix(1 0 0 1 322.1187 333.0895)" class="st2 st3">SDA</text>
+</g>
+<line class="st4" x1="320.3" y1="339.6" x2="305.9" y2="339.6"/>
+<g id="label9">
+	<text transform="matrix(1 0 0 1 322.5064 340.2896)" class="st2 st3">SCL</text>
+</g>
+<line class="st4" x1="348.7" y1="303.9" x2="348.7" y2="318"/>
+<g>
+	<g>
+		<g>
+			<g>
+				<g transform="rotate(270)">
+					<g>
+						<g>
+							<g>
+								<g>
+									<text id="label5_10_" transform="matrix(1 0 0 1 -325.4277 350.3107)" class="st2 st3">VIN</text>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<line class="st4" x1="341.5" y1="303.9" x2="341.5" y2="318"/>
+<g>
+	<g>
+		<g>
+			<g>
+				<g transform="rotate(270)">
+					<g>
+						<g>
+							<g>
+								<g>
+									<text id="label6_10_" transform="matrix(1 0 0 1 -326.793 343.1095)" class="st2 st3">3.3V</text>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<line class="st4" x1="348.7" y1="368.4" x2="348.7" y2="379.2"/>
+<g>
+	<g>
+		<g>
+			<g>
+				<g transform="rotate(270)">
+					<g>
+						<g>
+							<g>
+								<g>
+									<text id="label7_10_" transform="matrix(1 0 0 1 -366.793 350.3107)" class="st2 st3">GND</text>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<rect x="298.8" y="195.6" class="st4" width="57.2" height="50.4"/>
+<g id="label_5_">
+	<text transform="matrix(1 0 0 1 319.2364 211.9896)" class="st2 st3">Adafruit</text>
+</g>
+<g id="label_6_">
+	<text transform="matrix(1 0 0 1 316.9014 215.4896)" class="st2 st3">TCS34725</text>
+</g>
+<g id="label_7_">
+	<text transform="matrix(1 0 0 1 321.4756 218.9896)" class="st2 st3">RGB</text>
+</g>
+<g id="label_8_">
+	<text transform="matrix(1 0 0 1 321.086 222.4896)" class="st2 st3">Color</text>
+</g>
+<g id="label_9_">
+	<text transform="matrix(1 0 0 1 319.7227 225.9896)" class="st2 st3">Sensor</text>
+</g>
+<line class="st4" x1="370" y1="210" x2="355.9" y2="210"/>
+<g id="connector14terminal">
+</g>
+<g id="label14">
+	<text transform="matrix(1 0 0 1 339.5088 210.6894)" class="st2 st3">LED_EN</text>
+</g>
+<line class="st4" x1="370" y1="217.2" x2="355.9" y2="217.2"/>
+<g id="connector13terminal">
+</g>
+<g id="label13">
+	<text transform="matrix(1 0 0 1 347.5093 217.8895)" class="st2 st3">INT</text>
+</g>
+<line class="st4" x1="298.7" y1="210" x2="284.3" y2="210"/>
+<g id="connector12terminal">
+</g>
+<line class="st4" x1="298.7" y1="217.2" x2="284.3" y2="217.2"/>
+<g id="connector11terminal">
+</g>
+<line class="st4" x1="327.1" y1="181.5" x2="327.1" y2="195.6"/>
+<g id="connector8terminal_1_">
+</g>
+<line class="st4" x1="319.9" y1="181.5" x2="319.9" y2="195.6"/>
+<g id="connector10terminal_1_">
+</g>
+<line class="st4" x1="327.1" y1="246" x2="327.1" y2="260"/>
+<g id="connector9terminal_1_">
+</g>
+<g id="label10_1_">
+	<text transform="matrix(1 0 0 1 300.1234 211.0865)" class="st2 st3">SDA</text>
+</g>
+<g id="label9_1_">
+	<text transform="matrix(1 0 0 1 300.5111 218.2866)" class="st2 st3">SCL</text>
+</g>
+<g transform="matrix(1, 0, 0, 1, 44.6, 16)">
+	<g>
+		<g>
+			<g>
+				<g>
+					<g>
+						<g transform="rotate(270)">
+							<g>
+								<g>
+									<g>
+										<g>
+											<text id="label5_9_" transform="matrix(1 0 0 1 -187.4229 283.7156)" class="st2 st3">VIN</text>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 51.8, 16)">
+	<g>
+		<g>
+			<g>
+				<g>
+					<g>
+						<g transform="rotate(270)">
+							<g>
+								<g>
+									<g>
+										<g>
+											<text id="label6_9_" transform="matrix(1 0 0 1 -188.7881 269.3144)" class="st2 st3">3.3V</text>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g transform="matrix(1, 0, 0, 1, 44.6, 63.2)">
+	<g>
+		<g>
+			<g>
+				<g>
+					<g>
+						<g transform="rotate(270)">
+							<g>
+								<g>
+									<g>
+										<g>
+											<text id="label7_9_" transform="matrix(1 0 0 1 -181.5881 283.7156)" class="st2 st3">GND</text>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="connector54terminal">
+</g>
+<g id="connector55terminal">
+</g>
+<g id="connector56terminal">
+</g>
+<g id="connector57terminal">
+</g>
+<g id="connector58terminal">
+</g>
+<g id="connector59terminal">
+</g>
+<g id="connector60terminal">
+</g>
+<g id="connector35terminal">
+</g>
+<g id="connector34terminal">
+</g>
+<g id="connector33terminal">
+</g>
+<g id="connector32terminal">
+</g>
+<g id="connector31terminal">
+</g>
+<g id="connector30terminal">
+</g>
+<g id="connector29terminal">
+</g>
+<g id="connector28terminal">
+</g>
+<g id="connector27terminal">
+</g>
+<g id="connector26terminal">
+</g>
+<g id="connector25terminal">
+</g>
+<g id="connector24terminal">
+</g>
+<g id="connector51terminal">
+</g>
+<g id="connector52terminal">
+</g>
+<g id="connector22terminal">
+</g>
+<g id="connector23terminal">
+</g>
+<rect id="connector44terminal" x="211.7" y="165.7" class="st5" width="1.6" height="1.6"/>
+<rect id="connector45terminal" x="211.7" y="193.8" class="st5" width="1.6" height="1.6"/>
+<rect id="connector42terminal" x="211.7" y="179.8" class="st5" width="1.6" height="1.6"/>
+<g>
+	<g transform="translate(385.418,179.097)">
+		<g id="schematic_3_">
+			<path id="connector0pin" class="st4" d="M-58.3,95.6v-7.2"/>
+			<g id="connector0terminal">
+			</g>
+			<path id="path4098" class="st4" d="M-65,95.7h13.4"/>
+			<path id="path4100" class="st4" d="M-62.8,98.5h8.9"/>
+			<path id="path4102" class="st4" d="M-56.1,101.2h-4.5"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g transform="translate(132.084,558.83)">
+		<g id="schematic_4_">
+			<path id="connector0pin_1_" class="st4" d="M-11.6-172.5v-7.2"/>
+			<g id="connector0terminal_1_">
+			</g>
+			<path id="path4098_1_" class="st4" d="M-18.3-172.4h13.4"/>
+			<path id="path4100_1_" class="st4" d="M-16.1-169.6h8.9"/>
+			<path id="path4102_1_" class="st4" d="M-9.4-166.9h-4.5"/>
+		</g>
+	</g>
+</g>
+<line id="connector0pin_2_" class="st4" x1="327.1" y1="34.8" x2="327.1" y2="42"/>
+<path class="st4" d="M320.4,34.6h13.5"/>
+<g id="label_11_">
+	<text transform="matrix(1 0 0 1 321.4277 33.0004)" class="st2 st6">3.3V</text>
+</g>
+<line id="connector0pin_3_" class="st4" x1="348.7" y1="289.2" x2="348.7" y2="296.4"/>
+<g id="connector0terminal_3_">
+</g>
+<path class="st4" d="M342,289h13.5"/>
+<g transform="matrix(1, 0, 0, 1, 1.4985, 4.9878)">
+	<g>
+		<text id="label_31_" transform="matrix(1 0 0 1 341.5292 282.4166)" class="st2 st6">3.3V</text>
+	</g>
+</g>
+<g>
+	<line class="st4" x1="212.1" y1="209.9" x2="233.5" y2="210"/>
+</g>
+<g>
+	<line class="st4" x1="269.5" y1="194.6" x2="269.5" y2="217.2"/>
+</g>
+<g>
+	<line class="st4" x1="269.5" y1="339.6" x2="269.5" y2="217.2"/>
+</g>
+<circle cx="269.5" cy="217.2" r="1.4"/>
+<g>
+	<line class="st4" x1="305.5" y1="339.6" x2="269.5" y2="339.6"/>
+</g>
+<g>
+	<line class="st4" x1="233.5" y1="210" x2="283.9" y2="210"/>
+</g>
+<g>
+	<line class="st4" x1="305.5" y1="332.4" x2="233.5" y2="332.4"/>
+</g>
+<g>
+	<line class="st4" x1="233.5" y1="332.4" x2="233.5" y2="210"/>
+</g>
+<circle cx="233.5" cy="210" r="1.4"/>
+<g>
+	<line class="st4" x1="269.5" y1="217.2" x2="283.9" y2="217.2"/>
+</g>
+<g>
+	<line class="st4" x1="391.9" y1="210" x2="370.3" y2="210"/>
+</g>
+<g>
+	<line class="st4" x1="391.9" y1="260.4" x2="391.9" y2="210"/>
+</g>
+<g>
+	<line class="st4" x1="327.1" y1="260.4" x2="391.9" y2="260.4"/>
+</g>
+<circle cx="327.1" cy="260.4" r="1.4"/>
+<g>
+	<line class="st4" x1="327.1" y1="260.4" x2="327.1" y2="267.6"/>
+</g>
+<circle cx="327.1" cy="260.4" r="1.4"/>
+<g>
+	<line class="st4" x1="348.7" y1="379.2" x2="120.5" y2="379.2"/>
+</g>
+<circle class="st4" cx="120.5" cy="379.2" r="1.4"/>
+<g>
+	<line class="st4" x1="327.1" y1="181.5" x2="327.1" y2="42"/>
+</g>
+<circle cx="327.1" cy="42" r="1.4"/>
+<g>
+	<line class="st4" x1="327.1" y1="42.1" x2="86.9" y2="42.1"/>
+</g>
+<circle cx="327.1" cy="42" r="1.4"/>
+<g>
+	<line class="st4" x1="348.7" y1="296.4" x2="348.7" y2="303.6"/>
+</g>
+<g>
+	<line class="st4" x1="120.2" y1="379.2" x2="120.9" y2="311"/>
+</g>
+<circle cx="120.5" cy="379.2" r="1.4"/>
+<g>
+	<rect id="rect11" x="43.5" y="68.3" class="st4" width="154.2" height="229.9"/>
+	<text id="label_10_" transform="matrix(1 0 0 1 100.1511 176.3766)" class="st2 st7">Arduino</text>
+	<text id="text14" transform="matrix(1 0 0 1 99.4944 190.3917)" class="st2 st8">MKR1000</text>
+	<g id="label46">
+		<text transform="matrix(1 0 0 1 178.8473 150.5581)" class="st2 st6">Reset</text>
+	</g>
+	<g id="label54">
+		<text transform="matrix(1 0 0 1 46.9993 89.2025)" class="st2 st6">AREF</text>
+	</g>
+	<g id="label55">
+		<text transform="matrix(1 0 0 1 46.9914 104.5412)" class="st2 st6">DAC0/A0</text>
+	</g>
+	<g id="label56">
+		<text transform="matrix(1 0 0 1 46.9993 119.8802)" class="st2 st6">A1</text>
+	</g>
+	<g id="label57">
+		<text transform="matrix(1 0 0 1 46.9993 135.2189)" class="st2 st6">A2</text>
+	</g>
+	<g id="label58">
+		<text transform="matrix(1 0 0 1 46.9993 150.5577)" class="st2 st6">A3</text>
+	</g>
+	<g id="label59">
+		<text transform="matrix(1 0 0 1 46.9993 165.8966)" class="st2 st6">A4</text>
+	</g>
+	<g id="label60">
+		<text transform="matrix(1 0 0 1 46.9993 181.2354)" class="st2 st6">A5</text>
+	</g>
+	<g id="label61">
+		<text transform="matrix(1 0 0 1 46.9993 196.5742)" class="st2 st6">A6</text>
+	</g>
+	<g id="label35">
+		<text transform="matrix(1 0 0 1 174.1885 181.2357)" class="st2 st6">D13/RX</text>
+	</g>
+	<g id="label34">
+		<text transform="matrix(1 0 0 1 174.7717 165.8971)" class="st2 st6">D14/TX</text>
+	</g>
+	<g id="label33">
+		<text transform="matrix(1 0 0 1 171.4641 196.5747)" class="st2 st6">D12/SCL</text>
+	</g>
+	<g id="label32">
+		<text transform="matrix(1 0 0 1 171.0725 211.9134)" class="st2 st6">D11/SDA</text>
+	</g>
+	<g id="label31">
+		<text transform="matrix(1 0 0 1 168.0764 227.2521)" class="st2 st6">D10/MISO</text>
+	</g>
+	<g id="label30">
+		<text transform="matrix(1 0 0 1 173.6076 242.5908)" class="st2 st6">D9/SCK</text>
+	</g>
+	<g id="label29">
+		<text transform="matrix(1 0 0 1 170.9904 257.93)" class="st2 st6">D8/MOSI</text>
+	</g>
+	<text id="label28" transform="matrix(1 0 0 1 185.8381 273.2685)" class="st2 st6">D7</text>
+	<text id="label27" transform="matrix(1 0 0 1 185.8381 288.6076)" class="st2 st6">D6</text>
+	<g id="label26">
+		<text transform="matrix(1 0 0 1 46.9914 288.6075)" class="st2 st6">D5 PWM</text>
+	</g>
+	<g id="label25">
+		<text transform="matrix(1 0 0 1 46.9913 273.2687)" class="st2 st6">D4 PWM</text>
+	</g>
+	<text id="label24" transform="matrix(1 0 0 1 46.9914 257.9299)" class="st2 st6">D3 PWM</text>
+	<text id="label51" transform="matrix(1 0 0 1 46.9913 242.5909)" class="st2 st6">D2 PWM</text>
+	<text id="label52" transform="matrix(1 0 0 1 46.9914 227.2523)" class="st2 st6">D1 PWM</text>
+	<text id="label52_1_" transform="matrix(1 0 0 1 46.9914 211.9135)" class="st2 st6">D0 PWM</text>
+	<g id="label22">
+		<text transform="matrix(1 0 0 1 79.6487 75.8564)" class="st2 st6">VCC</text>
+	</g>
+	<polygon id="connector37terminal" class="st5" points="112.8,53.5 114.4,53.5 114.4,53.5 	"/>
+	<g id="label37">
+		<text transform="matrix(1 0 0 1 109.2258 75.8564)" class="st2 st6">VIN</text>
+	</g>
+	<polygon id="connector63terminal" class="st5" points="140.8,53.5 142.4,53.5 142.4,53.5 	"/>
+	<g id="label63">
+		<text transform="matrix(1 0 0 1 138.4192 75.8564)" class="st2 st6">5V</text>
+	</g>
+	<g id="label23">
+		<text transform="matrix(1 0 0 1 113.3235 292.6609)" class="st2 st6">GND</text>
+	</g>
+	<polygon id="connector43terminal" class="st5" points="84.8,53.5 86.4,53.5 86.4,53.5 	"/>
+	<polygon id="connector50terminal" class="st5" points="84.8,53.5 86.4,53.5 86.4,53.5 	"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(1 0 0 -1 120.601 305.1751)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-11.0537 0 0 -1 141.6232 61.043)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 148.4606)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(1 0 0 -1 114.8846 61.043)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(1 0 0 -1 86.8545 60.8339)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 163.8281)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 179.1955)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 194.563)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 209.9304)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 225.2979)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 240.6653)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 256.0328)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 271.4002)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 205.0626 286.7677)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 148.4606)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 164.028)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 179.3904)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 194.7527)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 87.216)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 102.5784)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 117.9408)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 133.3032)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 210.1151)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 225.4775)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 240.8399)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 256.2023)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 271.5647)" style="overflow:visible;"/>
+	
+		<use xlink:href="#line"  width="1" height="15" x="-0.5" y="-7.5" transform="matrix(-6.768450e-16 -11.0537 1 -6.123234e-17 36.0107 286.7677)" style="overflow:visible;"/>
+</g>
+<line class="st4" x1="269.5" y1="194.6" x2="211.7" y2="194.6"/>
+<line class="st4" x1="86.9" y1="53.8" x2="86.9" y2="42.1"/>
+</svg>
