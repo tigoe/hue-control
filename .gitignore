@@ -1,7 +1,6 @@
 server-examples/node_modules/*
 users.txt
-
-ArduinoHTTPClient-example/config.h
+*arduino_secrets.h
 */node_modules/*
 .vscode/arduino.json
 .vscode/c_cpp_properties.json
