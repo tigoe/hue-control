@@ -12,10 +12,11 @@
   ct is in the mired scale, which is 1000000/degrees Kelvin
 
   note: WiFi SSID and password are stored in arduino_secrets.h file.
-  If it is not present, add a new tab, call it "arduino_secrets.h"
-  and add the following variables:
-  char ssid[] = "ssid";     //  your network SSID (name)
-  char pass[] = "password"; // your network password
+  If it is not present, add a new tab, call it "arduino_secrets.h" 
+  and add the following defines, and change to your own values:
+
+  #define SECRET_SSID "ssid"    
+  #define SECRET_PASS "password"
 
    created 6 Jan 2019
    by Tom Igoe
@@ -49,6 +50,9 @@ String hueUserName = "yourhuehubusername"; // hue bridge username
 // make a wifi instance and a HttpClient instance:
 WiFiClient wifi;
 HttpClient httpClient = HttpClient(wifi, hueHubIP);
+// change the values of these two in the arduino_serets.h file:
+char ssid[] = SECRET_SSID;
+char pass[] = SECRET_PASS;
 
 void setup() {
   //Initialize serial and wait for port to open:
@@ -86,7 +90,7 @@ void loop() {
     // read sensor:
     uint16_t r, g, b, c, colorTemp, lux;
     tcs.getRawData(&r, &g, &b, &c);
-    int colorTemp = tcs.calculateColorTemperature_dn40(r, g, b, c);
+    colorTemp = tcs.calculateColorTemperature_dn40(r, g, b, c);
     lux = tcs.calculateLux(r, g, b);
 
     // print result to the display:

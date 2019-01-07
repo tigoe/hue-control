@@ -17,10 +17,11 @@
 
   note: WiFi SSID and password are stored in arduino_secrets.h file.
   If it is not present, add a new tab, call it "arduino_secrets.h" 
-  and add the following variables:
-  char ssid[] = "ssid";     //  your network SSID (name)
-  char pass[] = "password"; // your network password
+  and add the following defines, and change to your own values:
 
+  #define SECRET_SSID "ssid"    
+  #define SECRET_PASS "password"
+  
    modified 6 Jan 2018 
    by Tom Igoe (tigoe)
 */
@@ -37,7 +38,9 @@ String hueUserName = "youehubusername"; // hue bridge username
 // make a wifi instance and a HttpClient instance:
 WiFiClient wifi;
 HttpClient httpClient = HttpClient(wifi, hueHubIP);
-
+// change the values of these two in the arduino_serets.h file:
+char ssid[] = SECRET_SSID;
+char pass[] = SECRET_PASS;
 
 void setup() {
   //Initialize serial and wait for port to open:
