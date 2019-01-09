@@ -2,10 +2,10 @@ server-examples/node_modules/*
 users.txt
 *arduino_secrets.h
 */node_modules/*
-.vscode/arduino.json
-.vscode/c_cpp_properties.json
+*.vscode*
+*.vscode*
 client-example/.DS_Store
 server-examples/.DS_Store
-.DS_Store
+*.DS_Store
 ArduinoHueCTWithSensor/ArduinoHueCTSensor_circuit.fzz
-.DS_Store
+
