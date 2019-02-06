@@ -95,6 +95,10 @@ The network at the school where I teach is not an open DNS network; instead, all
 
 Enter this address in whatever registration interface your network requires, then wait a few minutes and your hub should have an IP address. To check for it, make sure your computer is on the same network, open a command line interface (like Terminal in OSX) and type:
 
+    $ ping -c 5 xxx.xxx.xxx.255 
+
+Where xxx.xxx.xxx are the first three numbers of your network. For example, on a network whose router is 172.16.130.1, you'd enter 172.16.130.255. You'll get a  list of responses, as devices on the network respond to your ping requests.  When it's done, type:   
+
     $ arp -a
 
 **NOTE**: for this to work, your computer needs to be on the same local network as your Hue hub. That means that to use this method of searching, your laptop has to be on the same wired network as the hue hub. You might need a USB or thunderbolt-wired ethernet adapter to sniff out the hubs using arp, if your wireless network is not the same local net as your wired network (this is the case in many universities and larger institutions).
@@ -107,6 +111,10 @@ You'll get a list of all the devices on the same network that your computer can 
 	? (192.168.0.255) at ff:ff:ff:ff:ff:ff on en0 ifscope [ethernet]
 
 In this case, the hue's IP address is 192.168.0.3.
+
+### An Alternative To The ping and arp Method
+
+Alternatively, if you are on MacOS, the [Discovery app](https://itunes.apple.com/us/app/discovery-dns-sd-browser/id1381004916?mt=12) does a good job of finding Hue Hubs on a network. 
 
 ## Adding a Lamp to a Hub
 
