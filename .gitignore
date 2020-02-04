@@ -10,3 +10,4 @@ server-examples/.DS_Store
 ArduinoHueCTWithSensor/ArduinoHueCTSensor_circuit.fzz
 
 .DS_Store
+ArduinoExamples/ArduinoHueCTWithSensor/arduino_secrets.h

@@ -1,2 +1,2 @@
-#define SECRET_SSID "ssid"    
-#define SECRET_PASS "password"
+#define SECRET_SSID "itpsandbox"    
+#define SECRET_PASS "NYU+s0a!+P?"
