@@ -157,6 +157,25 @@ If you can't connect a GE Link lamp to your hub, you might need to reset the lam
 
 For more on the GE Link lamps, see their [install guide](http://gelinkbulbs.com/downloads/GELinkInstallGuide.pdf).
 
+## Connecting to Hue Hubs with curl
+
+Assuming you have a Hue user set up on the hub, and you've got a lamp already connected to the hub, here's a quick set of commands to test from the command line, using curl:
+````
+$ export HUE_USER='fill-in-your-hue-username-given-to-you-by-the-hub'
+$ export ADDR='ip.address.of.hub'
+$ curl http://$ADDR/api/$HUE_USER/lights/   
+# this should return the list of available lights, like so:
+
+{"1":{"state":{"on":true,"bri":254,"hue":14314,"sat":172,"effect":"none","xy":[0.4791,0.4139],"ct":405,"alert":"none","colormode":"ct","reachable":true},"type":"Extended color light","name":"Hue color light 1","modelid":"LCT001","manufacturername":"Philips","uniqueid":"00:17:88:01:00:ff:9a:28-0b","swversion":"5.127.1.26581"}}
+
+$ curl -X PUT -d '{"on":true}' http://$ADDR/api/$HUE_USER/lights/1/state
+# The light should now be on
+$ curl -X PUT -d '{"on":false}' http://$ADDR/api/$HUE_USER/lights/1/state 
+# The light should now be off
+````
+
+You can find a number of other curl examples at [this link](https://itp.nyu.edu/classes/light/resources/philips-hue-control/).
+
 ## Further Reading
 
 * [Client-Side Programming of the Hue Hub](client-programming.md)
