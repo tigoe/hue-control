@@ -22,7 +22,7 @@
 #include <ArduinoHttpClient.h>
 #include "arduino_secrets.h"
 
-// make a wifi instance and a HttpClient instance:
+// make a wifi instance:
 WiFiClient wifi;
 
 // a string to hold the global light state (  {"on": true} or {"on":false}):
