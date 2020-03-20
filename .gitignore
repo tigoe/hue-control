@@ -14,3 +14,5 @@ ArduinoExamples/ArduinoHueCTWithSensor/arduino_secrets.h
 .DS_Store
 .DS_Store
 .DS_Store
+ArduinoExamples/ArduinoHTTPClient-example/arduino_secrets.h
+.DS_Store
