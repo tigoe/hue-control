@@ -4,21 +4,17 @@ Philips [Hue lighting system](http://www2.meethue.com/en-us/) allows you to cont
 
 ## Useful Tools
 
-To get started programming Hue apps, you'll need access to a Hue hub. You'll want a [Hue account](https://my.meethue.com/en-us/) too. The developer accounts are free. Keep the [Hue Developers Site](http://www.developers.meethue.com/) link handy.
+* To get started programming Hue apps, you'll need access to a Hue hub. You'll want a [Hue account](https://my.meethue.com/en-us/) too. The developer accounts are free. Keep the [Hue Developers Site](http://www.developers.meethue.com/) link handy.
 
-The Hue app for [Android](https://play.google.com/store/apps/details?id=com.philips.lighting.hue&hl=en) or [iOS](https://itunes.apple.com/us/app/philips-hue/id557206189?mt=8) is helpful when developing, because it works when your app doesn't yet. The [Hue Essentials app](https://www.hueessentials.com/) is pretty helpful as an alternative.
+* The Hue app for [Android](https://play.google.com/store/apps/details?id=com.philips.lighting.hue&hl=en) or [iOS](https://itunes.apple.com/us/app/philips-hue/id557206189?mt=8) is helpful when developing, because it works when your project doesn't yet. The [Hue Essentials app](https://www.hueessentials.com/) is a pretty helpful alternative also.
 
-Every Hue has a debug interface, available at
+* Every Hue has a debug interface, available at `http://$ADDR/debug/clip.html` Replace `$ADDR` with your hub's IP address. When you're developing, you can use this to send API commands to the hub to test things out.
 
-    http://$ADDR/debug/clip.html
+* Peter Murray's [node-hue-api library](https://github.com/peter-murray/node-hue-api) for node.js is the best of the various node.js JavaScript libraries I've tested for controlling the Hue.
 
-Replace $ADDR with your hub's IP address. When you're developing, you can use this to send API command to the hub to test things out.
-
-Peter Murray's [node-hue-api library](https://github.com/peter-murray/node-hue-api) for node.js is the best of the various client-side JavaScript libraries I've tested for controlling the Hue.
-
-The [ArduinoHTTPClient library](https://github.com/arduino-libraries/ArduinoHttpClient) and the [Arduino_JSON library](https://github.com/arduino-libraries/Arduino_JSON) are useful if you're using any of the Arduino WiFi-enabled boards to connect to your Hue hub. (Note: there's another library by the same name with no underscore. That one is not the one used here).
-
-The command line tool [curl](https://curl.haxx.se/docs/httpscripting.html) is really helpful to test HTTP requests to your hub. Curl's not available in the Windows command interface, but you can get it through the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) in Windows 10, or through [cygwin](https://www.cygwin.com/), an application that provides a linux shell for Windows.  
+* For controlling the Hue from a browser client, [p5.js](https://p5js.org) does a good job, as it's got a simple [http request API](https://p5js.org/reference/#/p5/httpDo). 
+* The [ArduinoHTTPClient library](https://github.com/arduino-libraries/ArduinoHttpClient) and the [Arduino_JSON library](https://github.com/arduino-libraries/Arduino_JSON) are useful if you're using any of the Arduino WiFi-enabled boards to connect to your Hue hub. (Note: there's another JSON library by the same name with no underscore. That one is not the one used here).
+* The command line tool [curl](https://curl.haxx.se/docs/httpscripting.html) is really helpful to test HTTP requests to your hub. Curl's not available in the Windows command interface, but you can get it through the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) in Windows 10, or through [cygwin](https://www.cygwin.com/), an application that provides a linux shell for Windows.  
 
 Other than these, you'll need to know some HTML and JavaScript, and a text editor, a command line interface, and a browser to try the examples on this site.
 
@@ -40,7 +36,7 @@ And in the Message Body, enter
 
     {"devicetype":"my app"}
 
-You can use any value you want for devicetype.
+You can use any value you want for devicetype. Older versions of the Hue hub firmware let you enter your own username, but newer versions auto-generate the username.
 
 Press the link button on the hub and click POST. You should get a response like this:
 
@@ -54,7 +50,7 @@ Press the link button on the hub and click POST. You should get a response like 
 
 Now you're ready to write code for your hub. Regardless of what environment you're programming in, you'll use the username you established here.
 
-Note: recent versions of the Chrome browser have disabled this interface. If you can't get to the debug interface, you can do everything it can do through  a command line interface using [curl](#connecting-through-curl)
+_Note:_ recent versions of the Chrome browser have disabled the debug interface. If you can't get to the debug interface, you can do everything it can do through  a command line interface using [curl](#connecting-through-curl).
 
 ## Other Features of the Debug Clip Interface
 
@@ -108,7 +104,7 @@ You can use any value you want for devicetype. Press the link button on the hub 
     	}
     ]
 
-Now you're ready to write code for your hub. Regardless of what environment you're programming in, you'll use the username you established here.
+Now you're ready to write code for your hub. Regardless of what environment you're programming in, you can use the username you established here. Most apps establish a unique username for the app.
 
 Assuming you have a Hue user set up on the hub, and you've got a lamp already connected to the hub, here's a quick set of commands to test from the command line, using curl. The first couple of commands establish your username and hub address in command line interface environment variables so you don't have to retype them.
 ````
@@ -133,13 +129,15 @@ Every hub has a unique You can find the MAC address on the bottom of your hub. I
 
     00:17:88:0B:14:48
 
-Some hubs will only show the last three bytes. For example, the hub above might show just 0B1448. With older Hue hubs, the first three bytes will always be 00:17:88. With newer ones, you might also see EC:B5:FA. 
+Some hubs will only show the last three bytes. For example, the hub above might show just 0B1448. With older Hue hubs, the first three bytes will always be 00:17:88. With newer ones, you might also see EC:B5:FA instead.
 
-To look for your hub on your network, make sure your computer is on the same local net, open a command line interface (like Terminal in OSX) and type:
+To look for your hub on your network, make sure you have the first trhee digits of the local network, and that you can access it, then open a command line interface and type:
 
     $ ping -c 5 xxx.xxx.xxx.255 
 
-Where xxx.xxx.xxx are the first three numbers of your network. For example, on a network whose router is 172.16.130.1, you'd enter 172.16.130.255.  You'll get a  list of responses, as devices on the network respond to your ping requests.  When it's done, type:   
+Where xxx.xxx.xxx are the first three numbers of your network. For example, on a network whose router is 172.16.130.1, you'd enter 172.16.130.255. Sometimes large institutions will use two different subnets for wired vs. wireless networks, but they will still be on the same larger local network. 
+
+You'll get a  list of responses, as devices on the network respond to your ping requests.  When it's done, type:   
 
     $ arp -a
 
@@ -153,9 +151,9 @@ You'll get a list of all the devices on the same network that your computer can 
 
 In this case, the hue's IP address is 192.168.0.3. 
 
-## Adding a Lamp to a Hub
+## Search for New Lamps
 
-You can add lamps to the hub using the regular mobile Hue app. You can also do it from the debug clip interface using a POST request on the following URL:
+You can search for new lamps on the hub using the regular mobile Hue app. You can also do it from the debug clip interface using a POST request on the following URL:
 
     /api/$HUE_USER/lights/
 
@@ -172,6 +170,7 @@ After 90 seconds, you can scan for new lamps that were added like so:
     /api/$HUE_USER/lights/new
 
 In curl:
+    
     $ curl -X GET http://$ADDR/api/$HUE_USER/lights/new
 
 This will list only the new lamps added after a scan for new lamps. 
@@ -179,9 +178,7 @@ This will list only the new lamps added after a scan for new lamps.
 
 ## Capturing a Lamp From Another Hub
 
-To re-capture a lamp that has been previously connected to a different hub, do the following:
-
-Place the lamp close to the hub with which you want to control it (closer than 30cm, or 1 ft). Turn off all other lamps connected to the hub, or make sure they're much further away than the one you want.
+If you're trying to add a lamp that was previously connected to a different hub, you'll need to use a different approach. Place the lamp close to the hub with which you want to control it (closer than 30cm, or 1 ft). Turn off all other lamps connected to the hub, or make sure they're much further away than the one you want.
 
 Send the following the debug clip interface using a PUT request:
 
@@ -193,16 +190,20 @@ In the body of your request put:
 
 In curl that's:
 
-   $ curl -X PUT -d '{"touchlink": true}' http://$ADDR/api/$HUE_USER/config
+    $ curl -X PUT -d '{"touchlink": true}' http://$ADDR/api/$HUE_USER/config
 
 
-The lamp should blink a few times, and the server will respond with a success message. You can now add the lamp as usual.
+The lamp should blink a few times, and the server will respond with a success message. You can now add the lamp using the find new lamps request described above.
 
 ## Deleting a Lamp from a Hub
 
 You can delete a lamp from a hub from the debug clip interface using a DELETE request on the following URL:
 
     /api/$HUE_USER/lights/1
+
+In curl:
+
+    $ curl -X DELETE http://$ADDR/api/$HUE_USER/lights/1 
 
 Replace 1 with the number of the light you wish to delete.
 
@@ -236,6 +237,25 @@ In curl, that's:
 
     $ curl -X PUT -d '{"on":true}' http://$ADDR/api/$HUE_USER/lights/4/state
 
+To turn it off, change the body of the request to 
+
+    {"on": false}
+
+You can change any of the properties of a light's state this way. Take a look, for example, at light 1 from the [Getting the State of All Lights](#getting-the-state-of-all-lights) section above:
+
+    {"1":{"state":{"on":true,"bri":254,"hue":14314,"sat":172,"effect":"none","xy":[0.4791,0.4139],"ct":405,"alert":"none","colormode":"ct","reachable":true},
+
+As long as the `reachable` property is true, meaning that the hub tried to reach the lamp and got a response, you can change any of the other properties. This is a color lamp, and has three modes, hs (for hue, saturation), ct (for color temp), and xy (for x and y dimensions in the CIE1931 color space). If you change either the hue or saturation, the lamp's colormode changes to hs, and if you change the color temperature, the colormode changes to ct. If you send xy values, the colormode changes to xy mode.
+
+* bri (brightness): 0-254
+* hue: 0-65535, through the colorwheel from red to red
+* sat (saturation): 0-254
+* effect: "none" or "colorloop" see [Developer API docs](https://developers.meethue.com/develop/hue-api/lights-api/)
+* xy (x and y position in [CIE1031 colorspace](https://medium.com/hipster-color-science/a-beginners-guide-to-colorimetry-401f1830b65a)): 2 floats, 0.0 to 1.0 each
+* ct (color temperature): in [mired](https://en.wikipedia.org/wiki/Mired), 153 - 500
+* alert - see [Developer API docs](https://developers.meethue.com/develop/hue-api/lights-api/)
+
+Different lights will have different properties in their state variable that you can change. The p5.js sketch will scan all the properties of each lamp on the 
 
 ## Adding GE Link Lamps to the Hue
 
