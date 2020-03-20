@@ -1,6 +1,7 @@
 server-examples/node_modules/*
 users.txt
 *arduino_secrets.h
+*/arduino_secrets.h
 */node_modules/*
 *.vscode*
 *.vscode*
