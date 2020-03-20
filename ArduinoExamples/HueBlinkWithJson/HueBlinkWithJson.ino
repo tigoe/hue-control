@@ -25,6 +25,7 @@
 
 #include <SPI.h>
 #include <WiFiNINA.h>
+//#include <WiFi101.h>  // use this for the MKR1000
 #include <ArduinoHttpClient.h>
 #include <Arduino_JSON.h>
 #include "arduino_secrets.h"
