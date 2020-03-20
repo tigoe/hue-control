@@ -249,7 +249,7 @@ For more on the GE Link lamps, see their [install guide](http://gelinkbulbs.com/
 
 ## Arduino Control of Hue Lights
 
-The MKR1000, MKR1010, and Nano 33 IoT Arduino models can control the Hue hub via HTTP requests as well. There are some Arduino Hue examples, with notes, in this repository as well.
+The MKR1000, MKR1010, and Nano 33 IoT Arduino models can control the Hue hub via HTTP requests as well. There are some [Arduino Hue examples](ArduinoExamples), with notes, in this repository as well.
 
 ## Further Reading
 
