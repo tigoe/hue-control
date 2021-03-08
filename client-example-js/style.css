@@ -1,0 +1,11 @@
+
+input {
+  position: sticky;
+  left: 120px;
+  margin: 3px;
+}
+
+span {
+  position: sticky;
+  left: 300px;
+}
