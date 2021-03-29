@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-one-light",
+  "version": "0.0.1",
+  "description": "a script to change the brightness of a hue lamp from the command line",
+  "main": "client.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tigoe/hue-control.git"
+  },
+  "keywords": [
+    "hue",
+    "http"
+  ],
+  "author": "Tom Igoe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tigoe/hue-control/issues"
+  },
+  "homepage": "https://github.com/tigoe/hue-control#readme"
+}
