@@ -129,12 +129,12 @@ function changeLight(evt) {
 }
 
 // this function makes the actual request using fetch():
-function sendRequest(request, verb, data) {
+function sendRequest(request, requestMethod, data) {
     // add the requestURL to the front of the request:
     url = requestUrl + request;
     // set the parameters:
     let params = {
-        method: verb, // GET, POST, PUT, DELETE, etc.
+        method: requestMethod, // GET, POST, PUT, DELETE, etc.
         //mode: 'no-cors', // if you need to turn off CORS, use this
         headers: {    // any HTTP headers you want can go here
             'accept': 'application/json'
@@ -142,7 +142,7 @@ function sendRequest(request, verb, data) {
     }
     // if it's not a GET request and there's data to send,
     // add it:
-    if (verb !== 'GET' || data) {
+    if (requestMethod !== 'GET' || data) {
         params.body = JSON.stringify(data); // body data type must match "Content-Type" header
     }
     // make the request:
