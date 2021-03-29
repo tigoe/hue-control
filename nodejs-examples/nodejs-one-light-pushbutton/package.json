@@ -1,0 +1,30 @@
+{
+  "name": "one-light-pushbutton",
+  "version": "0.0.1",
+  "description": "A script which reads a pushbutton on a raspberry pi to control a Hue light",
+  "main": "client.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "onoff": "^6.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tigoe/hue-control.git"
+  },
+  "keywords": [
+    "hue",
+    "raspberry",
+    "pi",
+    "pushbutton"
+  ],
+  "author": "Tom Igoe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tigoe/hue-control/issues"
+  },
+  "homepage": "https://github.com/tigoe/hue-control#readme"
+}

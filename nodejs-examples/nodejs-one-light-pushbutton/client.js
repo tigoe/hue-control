@@ -7,19 +7,20 @@ and the body has the light state:
   bri: brightness
 }
 
-It's called from the command line like so:
-
-node client.js brightness
-
-where brightness is a value from 0 to 254.
+It's intended for use on a Raspberry Pi running node.js, 
+with a pushbutton connected to GPIO pin X, using the onoff library
+to read it
 
 created 28 Mar 2021
 by Tom Igoe
-
 */
 
 // include the node-fetch module:
 const fetch = require('node-fetch');
+const Gpio = require('onoff').Gpio; // include onoff library
+
+// set I/O pin as input, listening for both rising and falling changes:
+let button = new Gpio(18, 'in', 'both');
 
 // IP address of the Hue hub:
 let address = '';
@@ -88,13 +89,27 @@ function sendRequest(request, requestMethod, data) {
     .catch(error => console.log(error));// if there is an error
 }
 
+
+// event listener function for button:
+function readButton(error, value) {
+  if (error) throw error;
+  // print the button value:
+  console.log(value);
+  let brightValue;
+  if (value == 1) {
+    if (lightState.on == true) {
+      brightValue = 0;
+    } else {
+      brightValue = 254;
+    }
+    // change one using the command line argument:
+    changeLight(brightValue);
+  }
+}
+
+
 // get the state of all the lights:
 sendRequest('lights', 'GET');
 
-// process.argv[2] is the third word on the command line argument, 
-// e.g. "node client.js 254"
-let brightString = process.argv[2];
-// it's a string, so convert it to an int:
-let brightValue = parseInt(brightString);
-// change one using the command line argument:
-changeLight(brightValue);
+// start the event listener:
+button.watch(readButton);
