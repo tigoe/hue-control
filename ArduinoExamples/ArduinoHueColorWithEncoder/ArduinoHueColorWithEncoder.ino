@@ -81,7 +81,7 @@ void loop() {
       // you'll make two requests here, one to turn on, and one to change the color.
       // a more efficient approach would be to make a more complex request function
       // that can change both in one request. For that, see
-      // 
+      // https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/HueBlinkWithJsonEncoder
       sendRequest(4, "on", "true");   // turn light on
       sendRequest(4, "hue", String(hue));   // change Hue
     }
