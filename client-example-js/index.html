@@ -4,19 +4,40 @@
         <script src="hue.js"></script>
     </head>
 <body>
-    <label for="address">Address:</label>   
-    <input type="text" name="address" id="address"><br>
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username"><br>
-    <input type="button" id="creds" value="Set credentials"><br>
-    <input type="button" id="lights" value="System status"><br>
- 
+    <div id="addressDiv">
+     <label for="address">Enter your hub's IP address here:</label> 
+     <input type="text" name="address" id="address"><br>
+    </div>
+    <div>
+     When you first connect your app to a hue hub, the hub issues you an app username. It's a long string of text that you'll use for subsequent requests.
+     <br>
+     
+    <label for="username">If you have an app username, enter it here:
+    </label>
+    <input type="text" name="username" id="username">
+</div>
+<div>
+    To create a new user on a hub:
+    <ol>
+        <li> enter your name here (not your app username):  <input type="text" name="userid" id="userid"></li>
+        <li>press the button on the hub</li>
+        <li>then within 30 seconds, press this button: <input type="button" id="newuser" value="Make a new user"></li>
+    </ol>
+</div>
+<div>
+    To get the whole system status as a long JSON object:
+    <input type="button" id="lights" value="System status"></div>
+    <div>
+ To change an individual light:<br> 
     <label for="lightNumber">Light Number</label>
     <input type="number" name="lightNumber" id="lightNumber" min="0" max = "64" value="2"><br>
     <label for="brightness">Brightness</label>
     <input type="range" name="brightness" id="bri" min="0" max = "254"><br>
 <input type="button" id="on" value="On"><br>
 
-<div id="responseDiv"></div>
+</div>  
+<hr width=25% align="left">
+
+<div id="responseDiv">Messages from the hub will appear here</div>
 </body>
 </html>

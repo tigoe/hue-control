@@ -18,8 +18,7 @@ The Hue API V2 was recently released, and will eventually supersede V1. These no
 
 * Peter Murray's [node-hue-api library](https://github.com/peter-murray/node-hue-api) for node.js is the best of the various node.js JavaScript libraries I've tested for controlling the Hue.
 
-
-* For controlling the Hue from a browser client, [p5.js](https://p5js.org) does a good job, as it's got a simple [http request API](https://p5js.org/reference/#/p5/httpDo). 
+* For controlling the Hue from a browser client, [p5.js](https://p5js.org) does a good job, as it's got a simple [http request API](https://p5js.org/reference/#/p5/httpDo). You can use plain JavaScript as well, of course. 
 * The [ArduinoHTTPClient library](https://github.com/arduino-libraries/ArduinoHttpClient) and the [Arduino_JSON library](https://github.com/arduino-libraries/Arduino_JSON) are useful if you're using any of the Arduino WiFi-enabled boards to connect to your Hue hub. (Note: there's another JSON library by the same name with no underscore. That one is not the one used here).
 * The command line tool [curl](https://curl.haxx.se/docs/httpscripting.html) is really helpful to test HTTP requests to your hub. Curl's not available in the Windows command interface, but you can get it through the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) in Windows 10, or through [cygwin](https://www.cygwin.com/), an application that provides a linux shell for Windows.  
 
@@ -27,7 +26,9 @@ Other than these, you'll need to know some HTML and JavaScript, and a text edito
 
 ## Connecting To Your Hub
 
-Your app will need to be identified to your hub using a unique username. Follow the developer site's [Getting Started instructions](http://www.developers.meethue.com/documentation/getting-started) to add a new app/username to your hub. Here they are in brief:
+Your app will need to be identified to your hub using a unique username. [This example page](client-example-js/) will simplify that, if you know your hub's IP address. Just go to this page and follow the directions. 
+
+To understand how this works refer to the developer site's [Getting Started instructions](http://www.developers.meethue.com/documentation/getting-started) to add a new app/username to your hub. Here they are in brief:
 
 Open a browser and connect to the hub's debug interface:
 

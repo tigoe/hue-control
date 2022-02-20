@@ -1,7 +1,12 @@
-
+body {
+  max-width: 600px;
+}
+div{
+  margin-bottom: 20px;
+}
 input {
   position: sticky;
-  left: 120px;
+  left: 300px;
   margin: 3px;
 }
 
