@@ -44,13 +44,14 @@ function setup() {
     //set the response div in a global variable for convenience:
     responseDiv = document.getElementById('responseDiv');
 
+
 }
 
 // gets all the lights, via the endpoint
 // GET /api/username/lights
 
 function getSystemStatus() {
-    requestUrl = 'http://' + address + '/api/' + username + '/';
+    requestUrl = 'https://' + address + '/api/' + username + '/';
     sendRequest('lights', 'GET');
 }
 
@@ -64,12 +65,12 @@ function setCreds() {
     username = userField.value;
     // if you have an address, make a requestURL with it:
     if (address) {
-        requestUrl = 'http://' + address + '/api/' + username + '/';
+        requestUrl = 'https://' + address + '/api/' + username + '/';
         // if there's no link to the debug page on this document,
         // then create it:
         if (!document.getElementById('debugLink')) {
        // form the debug page URL:
-            const debugUrl = 'http://' + address + '/debug/clip.html';
+            const debugUrl = 'https://' + address + '/debug/clip.html';
         // make it into an anchor (<a>) element"
             const newLink = document.createElement("a");
             // add the text of the element and the href:
@@ -97,19 +98,19 @@ function setLightNumber() {
 }
 
 function createUser(userid) {
-    let user = document.getElementById("userid").value;
-    if (!user) {
-        responseDiv.innerHTML = "please enter your name or app name";
+    let devicetype = document.getElementById("devicetype").value;
+    if (!devicetype) {
+        responseDiv.innerHTML = "please enter devicetype. You can use your own name.";
         return;
     }
-    let data = { "devicetype": user };
-    responseDiv.innerHTML = user;
+    let data = { "devicetype": devicetype };
+    responseDiv.innerHTML = devicetype;
     sendRequest('api/', 'post', data);
 
 }
 /*
 this function makes an HTTP PUT call to change the properties of the lights:
-HTTP PUT http://your.hue.hub.address/api/username/lights/lightNumber/state/
+HTTP PUT https://your.hue.hub.address/api/username/lights/lightNumber/state/
 and the body has the light state:
 {
   on: true/false,
@@ -156,7 +157,7 @@ function sendRequest(request, requestMethod, data) {
     // if there's no address or username set,
     // let the user know, and stop this function:
     if (!address) {
-        getResponse('please set the address');
+        getResponse("please set the hub's IP address");
         return;
     }
     // if there's no app username and they're not

@@ -28,31 +28,9 @@ Other than these, you'll need to know some HTML and JavaScript, and a text edito
 
 Your app will need to be identified to your hub using a unique username. [This example page](client-example-js/) will simplify that, if you know your hub's IP address. Just go to this page and follow the directions. 
 
-To understand how this works refer to the developer site's [Getting Started instructions](http://www.developers.meethue.com/documentation/getting-started) to add a new app/username to your hub. Here they are in brief:
+To understand how this works refer to the developer site's [Getting Started instructions](http://www.developers.meethue.com/documentation/getting-started). 
 
-Open a browser and connect to the hub's debug interface:
-
-````
-http://$ADDR/debug/clip.html
-````
-
-![Hue debug clip interface](images/debug_clip.png)
-
-In the URL field, enter:
-
-````
-/api
-````
-
-And in the Message Body, enter
-
-````
-{"devicetype":"my app"}
-````
-
-You can use any value you want for devicetype. Older versions of the Hue hub firmware let you enter your own username, but newer versions auto-generate the username. So now, I tend to use my own name as the devicetype, so I can keep track of which user is me. 
-
-Press the link button on the hub and click POST. You should get a response like this:
+ When you do it right, you should get a response like this:
 
 ````
 [
@@ -66,9 +44,15 @@ Press the link button on the hub and click POST. You should get a response like 
 
 Now you're ready to write code for your hub. Regardless of what environment you're programming in, you'll use the username you established here.
 
-## Other Features of the Debug Clip Interface
+## Features of the Debug Clip Interface
 
-The debug clip interface can be used to send any API command to your hub. The general query string is as follows:
+The debug clip interface is a page that you can use to test functions on your hub. Its address is:
+
+````
+http://your.hub.ip.address/debug/clip.html
+````
+
+It can be used to send any API command to your hub. The general query string is as follows:
 
 ````
 /api/$HUE_USER/command
