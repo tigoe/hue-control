@@ -105,7 +105,7 @@ function createUser(userid) {
     }
     let data = { "devicetype": devicetype };
     responseDiv.innerHTML = devicetype;
-    sendRequest('api/', 'post', data);
+    sendRequest('', 'post', data);
 
 }
 /*
@@ -178,7 +178,7 @@ function sendRequest(request, requestMethod, data) {
     // set the parameters:
     let params = {
         method: requestMethod, // GET, POST, PUT, DELETE, etc.
-        //mode: 'no-cors', // if you need to turn off CORS, use this
+        mode: 'no-cors', // if you need to turn off CORS, use this
         headers: {    // any HTTP headers you want can go here
             'accept': 'application/json'
         }
