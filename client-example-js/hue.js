@@ -51,7 +51,7 @@ function setup() {
 // GET /api/username/lights
 
 function getSystemStatus() {
-    requestUrl = 'https://' + address + '/api/' + username + '/';
+    requestUrl = 'http://' + address + '/api/' + username + '/';
     sendRequest('lights', 'GET');
 }
 
@@ -65,12 +65,12 @@ function setCreds() {
     username = userField.value;
     // if you have an address, make a requestURL with it:
     if (address) {
-        requestUrl = 'https://' + address + '/api/' + username + '/';
+        requestUrl = 'http://' + address + '/api/' + username + '/';
         // if there's no link to the debug page on this document,
         // then create it:
         if (!document.getElementById('debugLink')) {
        // form the debug page URL:
-            const debugUrl = 'https://' + address + '/debug/clip.html';
+            const debugUrl = 'http://' + address + '/debug/clip.html';
         // make it into an anchor (<a>) element"
             const newLink = document.createElement("a");
             // add the text of the element and the href:
@@ -110,7 +110,7 @@ function createUser(userid) {
 }
 /*
 this function makes an HTTP PUT call to change the properties of the lights:
-HTTP PUT https://your.hue.hub.address/api/username/lights/lightNumber/state/
+HTTP PUT http://your.hue.hub.address/api/username/lights/lightNumber/state/
 and the body has the light state:
 {
   on: true/false,
