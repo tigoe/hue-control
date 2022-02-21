@@ -1,6 +1,6 @@
 # Philips Hue Control from Arduino
 
-These examples show how to control a Philips Hue hub from An Arduino MKR1000, MKR1010, or Nano 33 IoT. 
+These examples show how to control a Philips Hue hub from An Arduino MKR1000, MKR1010, or Nano 33 IoT. [These videos are a godo place to start](https://vimeo.com/showcase/6916443), if you've never used a WiFi-connected Arduino model before. 
 
 ## Sketches included:
 
