@@ -20,7 +20,7 @@ The Hue API V2 was recently released, and will eventually supersede V1. These no
 
 * For controlling the Hue from a browser client, [p5.js](https://p5js.org) does a good job, as it's got a simple [http request API](https://p5js.org/reference/#/p5/httpDo). You can use plain JavaScript as well, of course. 
 * The [ArduinoHTTPClient library](https://github.com/arduino-libraries/ArduinoHttpClient) and the [Arduino_JSON library](https://github.com/arduino-libraries/Arduino_JSON) are useful if you're using any of the Arduino WiFi-enabled boards to connect to your Hue hub. (Note: there's another JSON library by the same name with no underscore. That one is not the one used here).
-* The command line tool [curl](https://curl.haxx.se/docs/httpscripting.html) is really helpful to test HTTP requests to your hub. Curl's not available in the Windows command interface, but you can get it through the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) in Windows 10, or through [cygwin](https://www.cygwin.com/), an application that provides a linux shell for Windows.  
+* The command line tool [curl](https://curl.haxx.se/docs/httpscripting.html) is  helpful to test HTTP requests to your hub, if you are familiar with the POSIX (linux/unix)command line. Curl's not available in the Windows command interface, but you can get it through the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) in Windows 10, or through [cygwin](https://www.cygwin.com/), an application that provides a linux shell for Windows. Here are some details on [using curl to access a hue hub](connecting-through-curl).  
 
 Other than these, you'll need to know some HTML and JavaScript, and a text editor, a command line interface, and a browser to try the examples on this site. The command line examples shown here are all for Linux or Unix, but will work on Windows 10 using the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) in Windows 10.  
 
@@ -94,49 +94,6 @@ And click PUT. The light should come on, and the hub should reply:
 
 For more on the Hue API, see the [Hue Getting Started guide](http://www.developers.meethue.com/documentation/getting-started),  the [Hue API Core Concepts](http://www.developers.meethue.com/documentation/core-concepts), and the full [Hue API documentation](http://www.developers.meethue.com/philips-hue-api). You'll need to create a free account and log in to use the developer portal.
 
-## Connecting Through Curl
-
-You can connect to your Hue hub using a command line interface as well, with the curl program, as mentioned above. For example, here's how you'd create a new user using curl:
-
-Enter the following on the command line, replacing $ADDR with your hub's IP address:
-
-````
-$ curl -X POST -d '{"devicetype":"my app"}' http://$ADDR/api
-````
-
-You can use any value you want for devicetype. Press the link button on the hub BEFORE YOU HIT ENTER on this command, then hit enter. You should get a response like this:
-
-````
-[
-    {
-        "success": {
-            "username": "newusername"
-        }
-    }
-]
-````
-
-Now you're ready to write code for your hub. Regardless of what environment you're programming in, you can use the username you established here. Most apps establish a unique username for the app.
-
-Assuming you have a Hue user set up on the hub, and you've got a lamp already connected to the hub, here's a quick set of commands to test from the command line, using curl. The first couple of commands establish your username and hub address in command line interface environment variables so you don't have to retype them.
-````
-$ export HUE_USER='fill-in-your-hue-username-given-to-you-by-the-hub' 
-$ export ADDR='ip.address.of.hub'
-$ curl http://$ADDR/api/$HUE_USER/lights/   
-# this should return the list of available lights, like so:
-````
-
-````
-{"1":{"state":{"on":true,"bri":254,"hue":14314,"sat":172,"effect":"none","xy":[0.4791,0.4139],"ct":405,"alert":"none","colormode":"ct","reachable":true},"type":"Extended color light","name":"Hue color light 1","modelid":"LCT001","manufacturername":"Philips","uniqueid":"00:17:88:01:00:ff:9a:28-0b","swversion":"5.127.1.26581"}}
-````
-
-````
-$ curl -X PUT -d '{"on":true}' http://$ADDR/api/$HUE_USER/lights/1/state
-# The light should now be on
-$ curl -X PUT -d '{"on":false}' http://$ADDR/api/$HUE_USER/lights/1/state 
-# The light should now be off
-````
-
 ## Finding Your Hub's IP address
 
 When you've added your hub to your network, you should be able to use the Hue app or the Hue Essentials app to get the IP address. But on a complex network like a school network, that may not work. Your mobile device and your Hue hub have to be on the same local network for this to work. For example, if your WiFi network is not the same local net as your wired Ethernet network (where the hub lives), you may not be able to get the address. But if you can get the hub's MAC address, then you can search for it on your network. Here's how
@@ -147,7 +104,7 @@ Every hub has a unique You can find the MAC address on the bottom of your hub. I
 
 Some hubs will only show the last three bytes. For example, the hub above might show just 0B1448. With older Hue hubs, the first three bytes will always be `00:17:88`. With newer ones, you might also see `EC:B5:FA` instead.
 
-To look for your hub on your network, make sure you have the first trhee digits of the local network, and that you can access it, then open a command line interface and type:
+To look for your hub on your network, make sure you have the first three digits of the local network, and that you can access it, then open a command line interface and type:
 
 `$ ping -c 5 xxx.xxx.xxx.255 `
 
@@ -175,12 +132,6 @@ You can search for new lamps on the hub using the regular mobile Hue app. You ca
 
 ````
 /api/$HUE_USER/lights/
-````
-
-In curl, that's:
-
-````
-$ curl -X POST http://$ADDR/api/$HUE_USER/lights
 ````
 
 Fill in your hub's address for $ADDR and your hue username for $HUE_USER.  You should get a reply like this:
