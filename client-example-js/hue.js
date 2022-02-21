@@ -47,7 +47,6 @@ function setup() {
 
 // gets all the lights, via the endpoint
 // GET /api/username/lights
-
 function getSystemStatus() {
     let thisRequest = 'lights';
     sendRequest(thisRequest, 'GET');
@@ -60,27 +59,25 @@ function setCreds() {
 
     const userField = document.getElementById("username");
     username = userField.value;
-    if (address) {
-        // if there's no link to the debug page on this document,
-        // then create it:
-        if (!document.getElementById('debugLink')) {
-            // form the debug page URL:
-            const debugUrl = 'http://' + address + '/debug/clip.html';
-            // make it into an anchor (<a>) element"
-            const newLink = document.createElement("a");
-            // add the text of the element and the href:
-            newLink.innerHTML = "Link to debug page for this hub";
-            newLink.href = debugUrl;
-            // make it open in a new page:
-            newLink.target = "_blank";
-            // give it an ID so you can look for it next time
-            // this function is called:
-            newLink.id = "debugLink";
-            // attach it to the address div:
-            const addressDiv = document.getElementById("addressDiv");
-            addressDiv.appendChild(newLink);
-        }
-
+    // if there's a valid addrrss, 
+    // and no link to the debug page on this document,
+    // then create that link:
+    if (address && !document.getElementById('debugLink')) {
+        // form the debug page URL:
+        const debugUrl = 'http://' + address + '/debug/clip.html';
+        // make it into an anchor (<a>) element:
+        const newLink = document.createElement("a");
+        // add the text of the element and the href:
+        newLink.innerHTML = "Link to debug page for this hub";
+        newLink.href = debugUrl;
+        // make it open in a new page:
+        newLink.target = "_blank";
+        // give it an ID so you can look for it next time
+        // this function is called:
+        newLink.id = "debugLink";
+        // attach it to the address div:
+        const addressDiv = document.getElementById("addressDiv");
+        addressDiv.appendChild(newLink);
     }
 
     responseDiv.innerHTML = 'address: ' + address
@@ -102,7 +99,6 @@ function createUser(userid) {
 
     let thisRequest = requestUrl;
     sendRequest('newuser', 'POST', data);
-
 }
 /*
 this function makes an HTTP PUT call to change the properties of the lights:
@@ -113,19 +109,19 @@ and the body has the light state:
   bri: brightness
 }
 */
-function changeLight(evt) {
+function changeLight(event) {
     // if it was the on button:
-    if (evt.target.id === 'on') {
+    if (event.target.id === 'on') {
         // if the button reads "On", turn the light on:
-        if (evt.target.value == 'On') {
+        if (event.target.value == 'On') {
             lightState.on = true;
             // change the button label to off:
-            evt.target.value = 'Off';
+            event.target.value = 'Off';
         } else {
             // if the button reads "Off", turn the light off:
             lightState.on = false;
             // change the button label to on
-            evt.target.value = 'On';
+            event.target.value = 'On';
         };
     }
     if (lightState.on) {
@@ -148,7 +144,7 @@ function sendRequest(request, requestMethod, data) {
     setCreds();
     let url = requestUrl;
 
- // if there's no address set,
+    // if there's no address set,
     // let the user know, and stop this function:
     if (!address) {
         getResponse("please set the hub's IP address");
@@ -171,7 +167,6 @@ function sendRequest(request, requestMethod, data) {
         }
     }
 
-    console.log(url);
     // set the parameters:
     let params = {
         method: requestMethod, // GET, POST, PUT, DELETE, etc.
@@ -188,13 +183,45 @@ function sendRequest(request, requestMethod, data) {
     // make the request:
     fetch(url, params)
         .then(response => response.json())  // convert response to JSON
-        .then(data =>  getResponse(JSON.stringify(data)))   // get the body of the response
+        .then(data => getResponse(JSON.stringify(data)))   // get the body of the response
         .catch(error => getResponse(error));// if there is an error
 }
 
 // function to call when you've got something to display:
 function getResponse(data) {
     responseDiv.innerHTML = data;
+    parseResults(data);
+}
+// this function is not finished. It shows how to get
+// the results as JSON. If you press the button
+// to make a new user, though, it does put the
+// new username in the username field.
+function parseResults(data) {
+    // the results are always a string containing
+    // a JSON object or an array
+    let JSONData = JSON.parse(data);
+
+    if (Array.isArray(JSONData)) {
+        if (JSONData[0].success) {
+            console.log(JSONData[0].success.username);
+            const userField = document.getElementById("username");
+           // if there's not already a userfield value,
+           // insert the one just returned from the hub:
+            if (!userField.value) {
+            userField.value = JSONData[0].success.username;
+           }
+        }
+        // how to handle an error result:
+        if (JSONData[0].error) {
+            // get the error result
+            let error = JSONData[0].error;
+            console.log(error);
+        }
+    } else {
+        // this is what we'd get with a lights response.
+        // it wouldn't be an array.
+        console.log(Object.keys(JSONData));
+    }
 }
 
 // listen for the HTML page to load fully:
