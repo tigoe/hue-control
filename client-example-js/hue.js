@@ -12,34 +12,34 @@ by Tom Igoe
 
 let address = '';       // IP address of the Hue hub
 let username = '';      // username on the hub
-let requestUrl = 'http://ipaddress/api/';
+let requestUrl = 'http://ipaddress/api/';  // generic hub URL
 let lightNumber = 2;    // number of the light to control
 let lightState = {      // JSON with the state of the light
     on: true,
     bri: 0
 };
-// a div for responses from the Hue hub,
+// a div for responses from the Hue hub:
 let responseDiv;
 // UI elements in the page:
 let slider, onButton, statusButton, newuserButton;
 
 // when the page loads, do this (like setup() in p5.js):
 function setup() {
-    // Add event listeners
+    // Add event listeners to UI elements in the page:
     slider = document.getElementById("bri");
-    slider.addEventListener("change", changeLight, false);
+    slider.addEventListener("change", changeLight);
 
     onButton = document.getElementById("on");
-    onButton.addEventListener("click", changeLight, false);
+    onButton.addEventListener("click", changeLight);
 
     statusButton = document.getElementById("lights");
-    statusButton.addEventListener("click", getSystemStatus, false);
+    statusButton.addEventListener("click", getSystemStatus);
 
     newuserButton = document.getElementById("newuser");
-    newuserButton.addEventListener("click", createUser, false);
+    newuserButton.addEventListener("click", createUser);
 
     const lightNum = document.getElementById("lightNumber");
-    lightNum.addEventListener("change", setLightNumber, false);
+    lightNum.addEventListener("change", setLightNumber);
 
     //set the response div in a global variable for convenience:
     responseDiv = document.getElementById('responseDiv');
@@ -59,7 +59,7 @@ function setCreds() {
 
     const userField = document.getElementById("username");
     username = userField.value;
-    // if there's a valid addrrss, 
+    // if there's a valid address, 
     // and no link to the debug page on this document,
     // then create that link:
     if (address && !document.getElementById('debugLink')) {
@@ -79,25 +79,28 @@ function setCreds() {
         const addressDiv = document.getElementById("addressDiv");
         addressDiv.appendChild(newLink);
     }
-
+    // print the address and username in the response div:
     responseDiv.innerHTML = 'address: ' + address
         + '<br>username: ' + username;
 }
 
+// set the number of the light to be changed:
 function setLightNumber() {
     const lightNum = document.getElementById("lightNumber");
     lightNumber = lightNum.value;
 }
 
+// create a new user when the hub button is pressed:
 function createUser(userid) {
     let devicetype = document.getElementById("devicetype").value;
+    // if there is no value for device type, 
+    // notify and leave the function:
     if (!devicetype) {
         responseDiv.innerHTML = "please enter devicetype. You can use your own name.";
         return;
     }
+    // make a new user request with the devicetype
     let data = { "devicetype": devicetype };
-
-    let thisRequest = requestUrl;
     sendRequest('newuser', 'POST', data);
 }
 /*
@@ -110,7 +113,7 @@ and the body has the light state:
 }
 */
 function changeLight(event) {
-    // if it was the on button:
+    // if it was the on button that called this function:
     if (event.target.id === 'on') {
         // if the button reads "On", turn the light on:
         if (event.target.value == 'On') {
@@ -124,10 +127,12 @@ function changeLight(event) {
             event.target.value = 'On';
         };
     }
+    // if the lightState is on:
     if (lightState.on) {
         // get the slider's value and set the brightness:
         lightState.bri = parseInt(slider.value);
     } else {
+        // if lightState is off, 
         // delete the bri property so as not to cause an 
         // error in the hub's response:
         delete lightState.bri;
@@ -142,6 +147,7 @@ function changeLight(event) {
 function sendRequest(request, requestMethod, data) {
     // fill in hub address and username from credentials fields:
     setCreds();
+    // set the url for this request:
     let url = requestUrl;
 
     // if there's no address set,
@@ -150,7 +156,7 @@ function sendRequest(request, requestMethod, data) {
         getResponse("please set the hub's IP address");
         return;
     } else {
-        // insert IP address:
+        // insert IP address into the url:
         url = url.replace('ipaddress', address);
     }
     // for any request but the newuser one, add the username:
@@ -178,7 +184,7 @@ function sendRequest(request, requestMethod, data) {
     // if it's not a GET request and there's data to send,
     // add it:
     if (requestMethod !== 'GET' || data) {
-        params.body = JSON.stringify(data); // body data type must match "Content-Type" header
+        params.body = JSON.stringify(data);
     }
     // make the request:
     fetch(url, params)
@@ -192,7 +198,7 @@ function getResponse(data) {
     responseDiv.innerHTML = data;
     parseResults(data);
 }
-// this function is not finished. It shows how to get
+// this function is just a stub. It shows how to get
 // the results as JSON. If you press the button
 // to make a new user, though, it does put the
 // new username in the username field.
@@ -201,6 +207,7 @@ function parseResults(data) {
     // a JSON object or an array
     let JSONData = JSON.parse(data);
 
+    // if JSONData is an array, read the first element in it:
     if (Array.isArray(JSONData)) {
         if (JSONData[0].success) {
             console.log(JSONData[0].success.username);
@@ -219,7 +226,7 @@ function parseResults(data) {
         }
     } else {
         // this is what we'd get with a lights response.
-        // it wouldn't be an array.
+        // it wouldn't be an array. Print the keys only:
         console.log(Object.keys(JSONData));
     }
 }
