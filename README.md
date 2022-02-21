@@ -26,7 +26,7 @@ Other than these, you'll need to know some HTML and JavaScript, and a text edito
 
 ## Connecting To Your Hub
 
-Your app will need to be identified to your hub using a unique username. [This example page](client-example-js/) will simplify that, if you know your hub's IP address. Just go to this page and follow the directions. 
+Your app will need to be identified to your hub using a unique username. [This example page](https://github.com/tigoe/hue-control/client-example-js/) will simplify that, if you know your hub's IP address. You can't run this page from a remote server; you'll need to run it on your local machine, or open the index.html file in a browser from your file system. 
 
 To understand how this works refer to the developer site's [Getting Started instructions](http://www.developers.meethue.com/documentation/getting-started). 
 

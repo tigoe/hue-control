@@ -11,8 +11,8 @@ by Tom Igoe
 */
 
 let address = '';       // IP address of the Hue hub
-let requestUrl;         // full URL for request      
 let username = '';      // username on the hub
+let requestUrl = 'http://ipaddress/api/';
 let lightNumber = 2;    // number of the light to control
 let lightState = {      // JSON with the state of the light
     on: true,
@@ -43,18 +43,15 @@ function setup() {
 
     //set the response div in a global variable for convenience:
     responseDiv = document.getElementById('responseDiv');
-
-
 }
 
 // gets all the lights, via the endpoint
 // GET /api/username/lights
 
 function getSystemStatus() {
-    requestUrl = 'http://' + address + '/api/' + username + '/';
-    sendRequest('lights', 'GET');
+    let thisRequest = 'lights';
+    sendRequest(thisRequest, 'GET');
 }
-
 
 // set the credentials for the Hue hub:
 function setCreds() {
@@ -63,15 +60,13 @@ function setCreds() {
 
     const userField = document.getElementById("username");
     username = userField.value;
-    // if you have an address, make a requestURL with it:
     if (address) {
-        requestUrl = 'http://' + address + '/api/' + username + '/';
         // if there's no link to the debug page on this document,
         // then create it:
         if (!document.getElementById('debugLink')) {
-       // form the debug page URL:
+            // form the debug page URL:
             const debugUrl = 'http://' + address + '/debug/clip.html';
-        // make it into an anchor (<a>) element"
+            // make it into an anchor (<a>) element"
             const newLink = document.createElement("a");
             // add the text of the element and the href:
             newLink.innerHTML = "Link to debug page for this hub";
@@ -104,8 +99,9 @@ function createUser(userid) {
         return;
     }
     let data = { "devicetype": devicetype };
-    responseDiv.innerHTML = devicetype;
-    sendRequest('', 'post', data);
+
+    let thisRequest = requestUrl;
+    sendRequest('newuser', 'POST', data);
 
 }
 /*
@@ -118,10 +114,6 @@ and the body has the light state:
 }
 */
 function changeLight(evt) {
-    // if (!address || !username) {
-    //     responseDiv.innerHTML = 'Please enter an address and username';
-    //     return;
-    // }
     // if it was the on button:
     if (evt.target.id === 'on') {
         // if the button reads "On", turn the light on:
@@ -154,31 +146,36 @@ function changeLight(evt) {
 function sendRequest(request, requestMethod, data) {
     // fill in hub address and username from credentials fields:
     setCreds();
-    // if there's no address or username set,
+    let url = requestUrl;
+
+ // if there's no address set,
     // let the user know, and stop this function:
     if (!address) {
         getResponse("please set the hub's IP address");
         return;
+    } else {
+        // insert IP address:
+        url = url.replace('ipaddress', address);
     }
-    // if there's no app username and they're not
-    // requesting a new one, let them know:
-    if (!username && request !== 'api/') {
-        getResponse('please set the address and app username');
-        return;
-    }
-    // if there's no requestURL or request, 
-    // let the user know and stop this function:
-    if (!requestUrl || !request) {
-        getResponse('please set the address and request data');
-        return;
+    // for any request but the newuser one, add the username:
+    if (request !== 'newuser') {
+        // if there's no username, let them know and stop:
+        if (!username) {
+            getResponse("please set the app username");
+            return;
+        } else {
+            // otherwise add the username to the request:
+            url += username + '/';
+            // add the rest of the request:
+            url += request;
+        }
     }
 
-    // add the requestURL to the front of the request:
-    url = requestUrl + request;
+    console.log(url);
     // set the parameters:
     let params = {
         method: requestMethod, // GET, POST, PUT, DELETE, etc.
-        mode: 'no-cors', // if you need to turn off CORS, use this
+        //mode: 'no-cors', // if you need to turn off CORS, use this
         headers: {    // any HTTP headers you want can go here
             'accept': 'application/json'
         }
@@ -191,7 +188,7 @@ function sendRequest(request, requestMethod, data) {
     // make the request:
     fetch(url, params)
         .then(response => response.json())  // convert response to JSON
-        .then(data => getResponse(JSON.stringify(data)))   // get the body of the response
+        .then(data =>  getResponse(JSON.stringify(data)))   // get the body of the response
         .catch(error => getResponse(error));// if there is an error
 }
 
