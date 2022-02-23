@@ -179,8 +179,7 @@ function sendRequest(request, requestMethod, data) {
         //mode: 'no-cors', // if you need to turn off CORS, use this
         headers: {    // any HTTP headers you want can go here
             'accept': 'application/json'
-        },
-        body: ''
+        }
     }
     // if it's not a GET request and there's data to send,
     // add it:
