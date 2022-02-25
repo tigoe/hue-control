@@ -1,6 +1,6 @@
 # Controlling the Philips Hue Hub
 
-Philips [Hue lighting system](http://www2.meethue.com/en-us/) allows you to control the lighting in your home from a mobile app, or from any application you write yourself that can connect to the internet. The center of the system is the Hue hub, an Ethernet-connected device that communicates with compatible lamps through the [ZigBee HA](http://www.zigbee.org/zigbee-for-developers/applicationstandards/zigbeehomeautomation/) radio protocol. Philips makes a range of Hue-compatible lamps, and many third-party lamps work with the same protocol. IConnectHue maintains a thorough [list of Hue-compatible lamps](https://iconnecthue.com/supported-devices/). Mostly Euro-market-centric, but still very useful. 
+Philips [Hue lighting system](http://www2.meethue.com/en-us/) allows you to control the lighting in your home from a mobile app, or from any application you write yourself that can connect to the internet. The center of the system is the Hue hub, an Ethernet-connected device that communicates with compatible lamps through the [ZigBee HA](http://www.zigbee.org/) radio protocol. Philips makes a range of Hue-compatible lamps, and many third-party lamps work with the same protocol. IConnectHue maintains a thorough [list of Hue-compatible lamps](https://iconnecthue.com/supported-devices/). Mostly Euro-market-centric, but still very useful. 
 
  Each Hue hub is its own HTTP web server, and can be controlled using the [Hue REST API](http://www.developers.meethue.com/). There are libraries to control the Hue available in many programming languages. The tutorials here are all in client-side JavaScript using [P5.js](http://p5js.org/), plain JavaScript, or server-side using [node.js](https://nodejs.org/), or micrcontroller-based for [Arduino](http://www.arduino.cc).
 
@@ -10,7 +10,7 @@ The Hue API V2 was recently released, and will eventually supersede V1. These no
 
 ## Useful Tools
 
-* To get started programming Hue apps, you'll need access to a Hue hub. You'll want a [Hue account](https://my.meethue.com/en-us/) too. The developer accounts are free. Keep the [Hue Developers Site](http://www.developers.meethue.com/) link handy.
+* To get started programming Hue apps, you'll need access to a Hue hub. You'll want a [Hue account](https://developer.meethue.com/en-us/) too. The developer accounts are free. Keep the [Hue Developers Site](http://www.developers.meethue.com/) link handy.
 
 * The Hue app for [Android](https://play.google.com/store/apps/details?id=com.philips.lighting.hue&hl=en) or [iOS](https://itunes.apple.com/us/app/philips-hue/id557206189?mt=8) is helpful when developing, because it works when your project doesn't yet. The [Hue Essentials app](https://www.hueessentials.com/) is a pretty helpful alternative also.
 
