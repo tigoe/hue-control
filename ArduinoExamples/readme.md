@@ -4,12 +4,12 @@ These examples show how to control a Philips Hue hub from An Arduino MKR1000, MK
 
 ## Sketches included:
 
-* [ArduinoHTTPClient-example](https://github.com/tigoe/hue-control/tree/main/ArduinoHTTPClient-example) Shows how to turn a light on or off.
-* [ArduinoHueCT](https://github.com/tigoe/hue-control/tree/main/ArduinoHueCT) Shows how to change the color temperature on those lights that support CT control. 
-* [ArduinoHueCTWithSensor](https://github.com/tigoe/hue-control/tree/main/ArduinoHueCTWithSensor) Shows how to change the color temperature on those lights that support CT control using a TCS34725 color sensor.
-* [HueBlinkMultipleHubs](https://github.com/tigoe/hue-control/tree/main/HueBlinkMultipleHubs) - shows how to control multiple Hue hubs from the same Arduino
-* [HueBlinkWithJson](https://github.com/tigoe/hue-control/tree/main/HueBlinkWithJson) - shows how to use the Arduino_JSON library to form your request.
-* [HueBlinkWithJsonEncoder](https://github.com/tigoe/hue-control/tree/main/HueBlinkWithJsonEncoder) - shows how to use the Arduino_JSON library and a rotary encoder to control 
+* [ArduinoHTTPClient-example](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/ArduinoHTTPClient-example) Shows how to turn a light on or off.
+* [ArduinoHueCT](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/ArduinoHueCT) Shows how to change the color temperature on those lights that support CT control. 
+* [ArduinoHueCTWithSensor](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/ArduinoHueCTWithSensor) Shows how to change the color temperature on those lights that support CT control using a TCS34725 color sensor.
+* [HueBlinkMultipleHubs](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/HueBlinkMultipleHubs) - shows how to control multiple Hue hubs from the same Arduino
+* [HueBlinkWithJson](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/HueBlinkWithJson) - shows how to use the Arduino_JSON library to form your request.
+* [HueBlinkWithJsonEncoder](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/HueBlinkWithJsonEncoder) - shows how to use the Arduino_JSON library and a rotary encoder to control 
 
 ## Libraries Required
 
@@ -20,7 +20,7 @@ All sketches use these libraries that you can install through the Library manage
 * ArduinoHttpClient 
 * Arduino_JSON (for the "withJSON" examples)
 
-The [ArduinoHueCTWithSensor](https://github.com/tigoe/hue-control/tree/main/ArduinoHueCTWithSensor) sketch uses the following additional libraries:
+The [ArduinoHueCTWithSensor](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/ArduinoHueCTWithSensor) sketch uses the following additional libraries:
 
 * Adafruit_TCS34725
 * Adafruit_GFX
@@ -81,7 +81,7 @@ You can use just the WiFi library. The WiFiClient class is an instance of the St
 
 You can use the ArduinoHttpClient library. This library takes an WiFiClient and adds some HTTP-specific functions, so you don't have to write all of the request yourself. You'll see that in most of the examples.
 
-Since the body of the request is JSON, you could simplify the process of making a JSON string by using the Arduino_JSON library. The examples [HueBlinkWithJson](https://github.com/tigoe/hue-control/tree/main/HueBlinkWithJson/) and  [HueBlinkWithJsonEncoder](https://github.com/tigoe/hue-control/tree/main/HueBlinkWithJsonEncoder/) show how you can do that.
+Since the body of the request is JSON, you could simplify the process of making a JSON string by using the Arduino_JSON library. The examples [HueBlinkWithJson](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/HueBlinkWithJson/) and  [HueBlinkWithJsonEncoder](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/HueBlinkWithJsonEncoder/) show how you can do that.
 
 ### ArduinoHTTPClient
 
