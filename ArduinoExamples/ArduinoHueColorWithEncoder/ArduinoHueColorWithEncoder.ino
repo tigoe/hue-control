@@ -13,12 +13,14 @@
   This example  shows how to concatenate Strings to assemble the
   PUT request and the body of the request.
 
-   modified 15 Feb 2016 
-   by Tom Igoe (tigoe) to match new API
+   modified 1 Mar 2022
+   by Tom Igoe (tigoe)
 */
 
 #include <SPI.h>
-#include <WiFiNINA.h>
+
+//#include <WiFi101.h>  // for MKR1000
+#include <WiFiNINA.h>   // for Nano 33 IoT, MKR1010
 #include <ArduinoHttpClient.h>
 #include "arduino_secrets.h"
 #include <Encoder.h>

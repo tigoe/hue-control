@@ -20,12 +20,13 @@
   A rotary encoder on pins A1 and A5 sets the change value
   A pushbutton on pin 3 sends the changed JSON value
 
-   created 2 Feb 2020
+   created 1 Mar 2022
    by Tom Igoe (tigoe)
 */
 
 #include <SPI.h>
-#include <WiFiNINA.h>
+//#include <WiFi101.h>  // for MKR1000
+#include <WiFiNINA.h>   // for Nano 33 IoT, MKR1010
 #include <ArduinoHttpClient.h>
 #include <Arduino_JSON.h>
 #include <Encoder.h>

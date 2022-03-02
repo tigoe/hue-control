@@ -22,12 +22,13 @@
   #define SECRET_SSID "ssid"    
   #define SECRET_PASS "password"
   
-   modified 6 Jan 2018 
+   modified 1 Mar 2022 
    by Tom Igoe (tigoe)
 */
 
 #include <SPI.h>
-#include <WiFi101.h>
+//#include <WiFi101.h>  // for MKR1000
+#include <WiFiNINA.h>   // for Nano 33 IoT, MKR1010
 #include <ArduinoHttpClient.h>
 #include "arduino_secrets.h"
 

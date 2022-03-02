@@ -19,6 +19,7 @@
   #define SECRET_PASS "password"
 
    created 6 Jan 2019
+   modified 1 Mar 2022
    by Tom Igoe
 */
 // include libraries for the sensor:
@@ -27,7 +28,8 @@
 
 // includes for the MKR1000 and ArduinoHttpClient lib:
 #include <SPI.h>
-#include <WiFi101.h>
+//#include <WiFi101.h>  // for MKR1000
+#include <WiFiNINA.h>   // for Nano 33 IoT, MKR1010
 #include <ArduinoHttpClient.h>
 #include "arduino_secrets.h"
 

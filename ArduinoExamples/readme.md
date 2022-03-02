@@ -4,12 +4,12 @@ These examples show how to control a Philips Hue hub from An Arduino MKR1000, MK
 
 ## Sketches included:
 
-* [ArduinoHTTPClient-example](ArduinoHTTPClient-example/ArduinoHTTPClient-example.ino) Shows how to turn a light on or off.
-* [ArduinoHueCT](ArduinoHueCT/ArduinoHueCT.ino) Shows how to change the color temperature on those lights that support CT control. 
-* [ArduinoHueCTWithSensor](ArduinoHueCTWithSensor.ino) Shows how to change the color temperature on those lights that support CT control using a TCS34725 color sensor.
-* [HueBlinkMultipleHubs](HueBlinkMultipleHubs/HueBlinkMultipleHubs.ino) - shows how to control multiple Hue hubs from the same Arduino
-* [HueBlinkWithJson](HueBlinkWithJson/HueBlinkWithJson.ino) - shows how to use the Arduino_JSON library to form your request.
-* [HueBlinkWithJsonEncoder](HueBlinkWithJsonEncoder/HueBlinkWithJsonEncoder.ino) - shows how to use the Arduino_JSON library and a rotary encoder to control 
+* [ArduinoHTTPClient-example](ArduinoHTTPClient-example) Shows how to turn a light on or off.
+* [ArduinoHueCT](ArduinoHueCT) Shows how to change the color temperature on those lights that support CT control. 
+* [ArduinoHueCTWithSensor](ArduinoHueCTWithSensor) Shows how to change the color temperature on those lights that support CT control using a TCS34725 color sensor.
+* [HueBlinkMultipleHubs](HueBlinkMultipleHubs) - shows how to control multiple Hue hubs from the same Arduino
+* [HueBlinkWithJson](HueBlinkWithJson) - shows how to use the Arduino_JSON library to form your request.
+* [HueBlinkWithJsonEncoder](HueBlinkWithJsonEncoder) - shows how to use the Arduino_JSON library and a rotary encoder to control 
 
 ## Libraries Required
 
@@ -18,6 +18,7 @@ All sketches use these libraries that you can install through the Library manage
 * WiFi101 (for MKR1000)
 * WiFiNINA (for MKR1010 or Nano 33 IoT)
 * ArduinoHttpClient 
+* Arduino_JSON (for the "withJSON" examples)
 
 The [ArduinoHueCTWithSensor](ArduinoHueCTWithSensor.ino) sketch uses the following additional libraries:
 

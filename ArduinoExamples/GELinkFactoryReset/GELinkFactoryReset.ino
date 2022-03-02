@@ -11,12 +11,13 @@
   After ten seconds, it sends the request for new bulbs. If everything
   went right, you should see the new bulb linked to your hub.
 
-   modified 27 Feb 2020
-   by Tom Igoe (tigoe) to match new API
+   modified 1 Mar 2022
+   by Tom Igoe (tigoe)
 */
 
 #include <SPI.h>
-#include <WiFi101.h>
+//#include <WiFi101.h>  // for MKR1000
+#include <WiFiNINA.h>   // for Nano 33 IoT, MKR1010
 #include <ArduinoHttpClient.h>
 #include "arduino_secrets.h"
 
