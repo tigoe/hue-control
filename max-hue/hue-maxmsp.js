@@ -1,19 +1,25 @@
 /*
-Hue control in plain JavaScript
+Hue control in plain JavaScript for Max/MSP
 
 Controls brightness of one light on a hue hub. 
 You pick which light. Also shows the status of 
 all the lights.
 
+Note: since Max 8 uses JS 1.6, this script uses
+XMLHttpRequest instead of fetch or more modern
+methods. 
+
 created 4 May 2022
 by Tom Igoe
 */
 
-let address = '';       // IP address of the Hue hub
-let username = '';      // username on the hub
-let requestUrl = 'http://ipaddress/api/';  // generic hub URL
-let lightNumber = 2;    // number of the light to control
-let lightState = {      // JSON with the state of the light
+autowatch = 1;
+
+var address = '';       // IP address of the Hue hub
+var username = '';      // username on the hub
+var requestUrl = 'http://ipaddress/api/';  // generic hub URL
+var lightNumber = 2;    // number of the light to control
+var lightState = {      // JSON with the state of the light
     on: true,
     bri: 0
 };
@@ -21,13 +27,15 @@ let lightState = {      // JSON with the state of the light
 // gets all the lights, via the endpoint
 // GET /api/username/lights
 function getSystemStatus() {
-    let thisRequest = 'lights';
+    var thisRequest = 'lights';
     sendRequest(thisRequest, 'GET');
 }
 
+// set the hub IP address:
 function setAddress(addr) {
     address = addr;
 }
+// set the username for making requests:
 function setUsername(usr) {
     username = usr;
 }
@@ -39,9 +47,9 @@ function setLightNumber(lightNum) {
 
 // create a new user when the hub button is pressed:
 function createUser(userid) {
-    let devicetype = userid; //document.getElementById("devicetype").value;
+    var devicetype = userid; //document.getElementById('devicetype').value;
     // make a new user request with the devicetype
-    let data = { "devicetype": devicetype };
+    var data = { 'devicetype': devicetype };
     sendRequest('newuser', 'POST', data);
 }
 /*
@@ -53,18 +61,15 @@ and the body has the light state:
   bri: brightness
 }
 */
-
-// TODO:
-function changeLight(state, value) {
+function changeLight(on, bri) {
     // parameters: 
-    // (state (on or off)), value (brightness)
-    if (state == 'on') {
-        lightState.on = true;
-    }
+    // (on (true or false)), bri (brightness)
+    lightState.on = state;
+
     // if the lightState is on:
     if (lightState.on) {
         // get the slider's value and set the brightness:
-        lightState.bri = value;
+        lightState.bri = bri;
     } else {
         // if lightState is off, 
         // delete the bri property so as not to cause an 
@@ -73,26 +78,28 @@ function changeLight(state, value) {
     }
 
     // send the request:
-    let thisRequest = 'lights/' + lightNumber + '/state/';
+    var thisRequest = 'lights/' + lightNumber + '/state/';
     sendRequest(thisRequest, 'PUT', lightState);
 }
 
 // this function makes the actual request using fetch():
 function sendRequest(request, requestMethod, data) {
-  // parameters:
-  // request (the RESTful endpoint)
-  // requestMethod (GET, PUT, POST, DELETE)
-  // data (the JSON to go with a PUT or POST)
+    // parameters:
+    // request (the RESTful endpoint)
+    // requestMethod (GET, PUT, POST, DELETE)
+    // data (the JSON to go with a PUT or POST)
     if (!address) {
-        post("please set address");
+        post('please set address');
+        post();
         return;
     }
     if (!username) {
-        post("please set username");
+        post('please set username');
+        post();
         return;
     }
     // set the url for this request:
-    let url = requestUrl;
+    var url = requestUrl;
 
     // if there's no address set,
     // let the user know, and stop this function:
@@ -107,7 +114,7 @@ function sendRequest(request, requestMethod, data) {
     if (request !== 'newuser') {
         // if there's no username, let them know and stop:
         if (!username) {
-            getResponse("please set the app username");
+            getResponse('please set the app username');
             return;
         } else {
             // otherwise add the username to the request:
@@ -117,29 +124,28 @@ function sendRequest(request, requestMethod, data) {
         }
     }
 
-    // set the parameters:
-    let params = {
-        method: requestMethod, // GET, POST, PUT, DELETE, etc.
-        //mode: 'no-cors', // if you need to turn off CORS, use this
-        headers: {    // any HTTP headers you want can go here
-            'accept': 'application/json'
-        }
-    }
     // if it's not a GET request and there's data to send,
     // add it:
     if (requestMethod !== 'GET' || data) {
         params.body = JSON.stringify(data);
     }
     // make the request:
-    fetch(url, params)
-        .then(response => response.json())  // convert response to JSON
-        .then(data => getResponse(JSON.stringify(data)))   // get the body of the response
-        .catch(error => getResponse(error));// if there is an error
+    httpRequest = new XMLhttpRequestuest();
+    // set request header:
+    httpRequest.setRequestHeader('Content-Type', 'application/json');
+    // set handlers for response and error:
+    httpRequest.addEventListener('load', getResponse);
+    httpRequest.addEventListener('error', getResponse);
+    // start request:
+    httpRequest.open(requestMethod, url);
+    // send the body:
+    httpRequest.send(body);
 }
 
 // function to call when you've got something to display:
 function getResponse(data) {
     post(data);
+    post();
     // responseDiv.innerHTML = data;
     parseResults(data);
 }
@@ -150,28 +156,25 @@ function getResponse(data) {
 function parseResults(data) {
     // the results are always a string containing
     // a JSON object or an array
-    let JSONData = JSON.parse(data);
+    var JSONData = JSON.parse(data);
 
     // if JSONData is an array, read the first element in it:
     if (Array.isArray(JSONData)) {
         if (JSONData[0].success) {
             post(JSONData[0].success.username);
-            const userField = document.getElementById("username");
-            // if there's not already a userfield value,
-            // insert the one just returned from the hub:
-            if (!userField.value) {
-                userField.value = JSONData[0].success.username;
-            }
+            post();
         }
         // how to handle an error result:
         if (JSONData[0].error) {
             // get the error result
-            let error = JSONData[0].error;
+            var error = JSONData[0].error;
             post(error);
+            post();
         }
     } else {
         // this is what we'd get with a lights response.
         // it wouldn't be an array. Print the keys only:
         post(Object.keys(JSONData));
+        post();
     }
 }
