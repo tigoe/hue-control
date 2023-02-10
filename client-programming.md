@@ -1,6 +1,6 @@
 # Client-Side JavaScript Programming for the Philips Hue
 
-Since all of the Hue commands are HTTP requests, you can build browser-based interfaces for it in JavaScript. In [this example](https://github.com/tigoe/hue-control/tree/main/client-example-js/), I used both P5.js and jQuery to show how the calls could be made with either one. (_also note: at the time of this writing, P5.js' HttpDo() command was not working properl with PUT requests. I expect this will be resolved shortly_). 
+Since all of the Hue commands are HTTP requests, you can build browser-based interfaces for it in JavaScript. In [this example](https://tigoe.github.io/hue-control/client-example-p5js/), I used both P5.js and jQuery to show how the calls could be made with either one. (_also note: at the time of this writing, P5.js' HttpDo() command was not working properl with PUT requests. I expect this will be resolved shortly_). 
 
 For a deeper understanding of the Hue API, see the [API documentation](http://www.developers.meethue.com/philips-hue-api) on the developers site. 
 
@@ -58,7 +58,7 @@ The hub will respond with the data on all the lights. Here's one light:
 
 ```
 
-The state object of each light is the part you will manipulate in your code. The [client example](https://github.com/tigoe/hue-control/tree/main/client-example-js/) starts by making this same request for all the lights, then iterating over the result to pull out the light's state in the `getLights()` function. Then it iterates over the state and creates a control for the properties you'd want to control in the `createControl()` function. 
+The state object of each light is the part you will manipulate in your code. The [client example](https://tigoe.github.io/hue-control/client-example-js/) starts by making this same request for all the lights, then iterating over the result to pull out the light's state in the `getLights()` function. Then it iterates over the state and creates a control for the properties you'd want to control in the `createControl()` function. 
 
 For example, here's the state of the light above:
 
