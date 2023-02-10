@@ -24,7 +24,7 @@ The Hue API V2 was recently released, and will eventually supersede V1. These no
 
 Other than these, you'll need to know some HTML and JavaScript, and a text editor, a command line interface, and a browser to try the examples on this site. The command line examples shown here are all for Linux or Unix, but will work on Windows 10 using the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) in Windows 10.  
 
-## Connecting To Your bridge
+## Connecting To Your Bridge
 
 Your app will need to be identified to your bridge using a unique username. [This example page](https://github.com/tigoe/hue-control/tree/main/client-example-js) will simplify that, if you know your bridge's IP address. You can't run this page from a remote server; download it and open the `index.html` file in a browser from your file system. This is because the Hue API version 1 uses HTTP, not HTTPS. 
 
@@ -94,7 +94,7 @@ And click PUT. The light should come on, and the bridge should reply:
 
 For more on the Hue API, see the [Hue Getting Started guide](http://www.developers.meethue.com/documentation/getting-started),  the [Hue API Core Concepts](http://www.developers.meethue.com/documentation/core-concepts), and the full [Hue API documentation](http://www.developers.meethue.com/philips-hue-api). You'll need to create a free account and log in to use the developer portal.
 
-## Finding Your Bridge's IP address
+## Finding Your Bridge's IP Address
 
 When you've added your bridge to your network, you should be able to use the Hue app or the Hue Essentials app to get the IP address. But on a complex network like a school network, that may not work. Your mobile device and your Hue bridge have to be on the same local network for this to work. For example, if your WiFi network is not the same local net as your wired Ethernet network (where the bridge lives), you may not be able to get the address. But if you can get the bridge's MAC address, then you can search for it on your network. Here's how
 
