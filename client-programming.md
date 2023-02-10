@@ -1,6 +1,6 @@
 # Client-Side JavaScript Programming for the Philips Hue
 
-Since all of the Hue commands are HTTP requests, you can build browser-based interfaces for it in JavaScript. In [this example](https://tigoe.github.io/hue-control/client-example-p5js/), I used both P5.js and jQuery to show how the calls could be made with either one. (_also note: at the time of this writing, P5.js' HttpDo() command was not working properl with PUT requests. I expect this will be resolved shortly_). 
+Since all of the Hue commands are HTTP requests, you can build browser-based interfaces for it in JavaScript. In [this example](https://tigoe.github.io/hue-control/client-example-p5js/public/), I used both P5.js and jQuery to show how the calls could be made with either one. (_also note: at the time of this writing, P5.js' HttpDo() command was not working properl with PUT requests. I expect this will be resolved shortly_). 
 
 For a deeper understanding of the Hue API, see the [API documentation](http://www.developers.meethue.com/philips-hue-api) on the developers site. 
 
