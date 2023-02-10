@@ -1,4 +1,4 @@
-# Controlling the Philips Hue bridge
+# Controlling the Philips Hue Bridge
 
 Philips [Hue lighting system](http://www2.meethue.com/en-us/) allows you to control the lighting in your home from a mobile app, or from any application you write yourself that can connect to the internet. The center of the system is the Hue bridge, an Ethernet-connected device that communicates with compatible lamps through the [ZigBee HA](http://www.zigbee.org/) radio protocol. Philips makes a range of Hue-compatible lamps, and many third-party lamps work with the same protocol. IConnectHue maintains a thorough [list of Hue-compatible lamps](https://iconnecthue.com/supported-devices/). Mostly Euro-market-centric, but still very useful. 
 
