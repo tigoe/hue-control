@@ -48,7 +48,7 @@ You'll get a result that's a list of all the hubs on your network like so:
       }
     ]
 ```
-The [discovery.js script](server-examples/discovery.js) is a full working example of how to call `nupnpSearch()`.
+The [discovery.js script](https://tigoe.github.io/hue-control/client-example-p5js/public/discovery.js) is a full working example of how to call `nupnpSearch()`.
 
 ## Adding and Deleting Users and other Housekeeping Commands
 
