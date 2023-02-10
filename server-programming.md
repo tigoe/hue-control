@@ -1,6 +1,6 @@
 # Server-Side JavaScript Programming for the Philips Hue
 
-Since the Hue API is made up of HTTP calls, you could control it from [node.js](http://www.nodejs.org) directly just using the HTTPClient class. However, [Peter Murray](https://github.com/peter-murray) has written a nice library for node.js, [node-hue-api](https://github.com/peter-murray/node-hue-api), to simplify the process. This document, and [these examples](server-examples), explain how to use it.
+Since the Hue API is made up of HTTP calls, you could control it from [node.js](http://www.nodejs.org) directly just using the HTTPClient class. However, [Peter Murray](https://github.com/peter-murray) has written a nice library for node.js, [node-hue-api](https://github.com/peter-murray/node-hue-api), to simplify the process. This document, and [these examples](https://github.com/tigoe/hue-control/tree/main/nodejs-examples/), explain how to use it.
 
 The node-hue-api documentation is excellent, and this is not an attempt to replace it. This document includes only a few tips to get started with the library.
 
@@ -52,9 +52,9 @@ The [discovery.js script](server-examples/discovery.js) is a full working exampl
 
 ## Adding and Deleting Users and other Housekeeping Commands
 
-The node-hue-api library also offers an interface for registering new users on the hub, and for deleting users. The [displayUsers.js](server-examples/displayUsers.js) example shows you how to add and delete users. Unless you're making a full turnkey application, though, you might find it easier to register users through the debug clip interface on your hub.
+The node-hue-api library also offers an interface for registering new users on the hub, and for deleting users. The [displayUsers.js](https://github.com/tigoe/hue-control/tree/main/nodejs-examples/node-hue-api-library-examples/displayusers.js) example shows you how to add and delete users. Unless you're making a full turnkey application, though, you might find it easier to register users through the debug clip interface on your hub.
 
-In the server examples directory, you'll find a script called [runcommand.js](server-examples/runcommand.js). This script will let you test out many of the API commands. You'll need to pass the script the IP address and username and the command you want to run like so:
+In the server examples directory, you'll find a script called [runcommand.js](https://github.com/tigoe/hue-control/tree/main/nodejs-examples/node-hue-api-library-examples/runcommand.js). This script will let you test out many of the API commands. You'll need to pass the script the IP address and username and the command you want to run like so:
 
 ```js
 	node runcommand.js ipaddress username command
@@ -156,7 +156,7 @@ Details of all of these commands can be found in the [node-hue-api documentation
       .done();
 ```
 
-The [fadeLight.js](server-examples/fadeLight.js) example shows how to set light states using data coming into node.js from a serial port. It assumes you've got some other device attached to the serial port that will send a numeric string, comma-separated, as follows:
+The [fadeLight.js](https://github.com/tigoe/hue-control/tree/main/nodejs-examples/node-hue-api-library-examples/fadeLight.js) example shows how to set light states using data coming into node.js from a serial port. It assumes you've got some other device attached to the serial port that will send a numeric string, comma-separated, as follows:
 
 	lightNumber, red, green, blue, brightness, transitionTime\n
 
@@ -216,4 +216,4 @@ Schedules allow you to set a time at which given light states will be triggered.
 
 By changing the body of the schedule and the address, you'd change whether you control a light, a group, or a scene. Schedules only allow you to control one group, scene, or light at a time.
 
-Although these examples don't show how to build web interfaces with node-hue-api, you can combine it with express.js or your favorite server API. Since you can also [control the Hue directly from the client](client-example), this is best reserved for when there are other functions needed that the hue hub server itself can't fulfill.
+Although these examples don't show how to build web interfaces with node-hue-api, you can combine it with express.js or your favorite server API. Since you can also [control the Hue directly from the client](https://tigoe.github.io/hue-control/client-example-js/), this is best reserved for when there are other functions needed that the hue hub server itself can't fulfill.
