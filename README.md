@@ -187,6 +187,12 @@ If touchlink doesn't succeed in resetting a lamp, you may need to reset it manua
 3. Repeat steps 1 and 2 four more times
 4. Once the lamp blinks, use the touchlink protocol, above. 
 
+For some third party bulbs, like the Cree Connect or the Innr bulbs, you can do it with 2 second intervals. When in doubt, go with three seconds, though.
+
+#### Resetting a Lamp with a Remote Control
+
+If you have one of the [Hue remote controls](https://www.philips-hue.com/en-us/p/hue-dimmer-switch--latest-model-/046677562779#overview), you can reset a lamp using it as well. To do this, turn on the lamp and place the remote control within six inches of the lamp. Press the power on and power off buttons (or power on and scene select buttons on more recent models) similtaneously and hold them until the bulb flashes.   This will put the lamp in its default factory state, ready to pair with a new hub.  
+
 ## Deleting a Lamp from a Hub
 
 You can delete a lamp from a hub from the debug clip interface using a DELETE request on the following URL:
