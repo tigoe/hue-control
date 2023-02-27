@@ -211,6 +211,7 @@ function parseResults(data) {
         JSONData = JSON.parse(data);
     } catch (err) {
         console.log("Error: " + err);
+        responseDiv.innerHTML = "Error: " + err;
     }
     
 
