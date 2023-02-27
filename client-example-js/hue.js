@@ -186,6 +186,7 @@ function sendRequest(request, requestMethod, data) {
     if (requestMethod !== 'GET' || data) {
         params.body = JSON.stringify(data);
     }
+    console.log(url);
     // make the request:
     fetch(url, params)
         .then(response => response.json())  // convert response to JSON
@@ -205,7 +206,13 @@ function getResponse(data) {
 function parseResults(data) {
     // the results are always a string containing
     // a JSON object or an array
-    let JSONData = JSON.parse(data);
+   let JSONData;
+    try{
+        JSONData = JSON.parse(data);
+    } catch (err) {
+        console.log("Error: " + err);
+    }
+    
 
     // if JSONData is an array, read the first element in it:
     if (Array.isArray(JSONData)) {
