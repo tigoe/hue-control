@@ -12,7 +12,7 @@ by Tom Igoe
 
 let address = '';       // IP address of the Hue hub
 let username = '';      // username on the hub
-let requestUrl = 'http://ipaddress/api/';  // generic hub URL
+let requestUrl = 'https://ipaddress/api/';  // generic hub URL
 let lightNumber = 2;    // number of the light to control
 let lightState = {      // JSON with the state of the light
     on: true,
