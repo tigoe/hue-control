@@ -197,7 +197,7 @@ function sendRequest(request, requestMethod, data) {
 // function to call when you've got something to display:
 function getResponse(data) {
     responseDiv.innerHTML = data;
-    parseResults(data);
+   // parseResults(data);
 }
 // this function is just a stub. It shows how to get
 // the results as JSON. If you press the button
