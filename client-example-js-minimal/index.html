@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="hue.js"></script>
+  <title>Minimal Hue Example</title>
+</head>
+<body>
+  <div id="request">
+    <label for="address">Enter your hub's IP address here:</label>
+    <input type="text" class="fields" name="address" id="address"><br>
+    <label for="address">Enter your userid here:</label>
+    <input type="text" class="fields" name="userid" id="userid"><br>
+    <label for="address">Enter API command here:</label>
+    <textarea rows="2" cols="40" class="fields" name="command" id="command"></textarea><br>
+    <label for="address">Enter command data here:</label>
+    <textarea rows="3" cols="40" class="fields" name="data" id="data"></textarea><br>
+    <p id="url"></p>
+  </div>
+  <input type="button" class="buttons" id="GET" value="GET">
+  <input type="button" class="buttons" id="PUT" value="PUT">
+  <input type="button"  class="buttons" id="POST" value="POST">
+  <input type="button" class="buttons" id="DELETE" value="DELETE">
+  <div id="response"></div>
+</body>
+</html>
