@@ -53,9 +53,6 @@ char hueHubIP[] = "172.22.151.183";  // IP address of the HUE bridge
 // make a wifi instance and a HttpClient instance:
 WiFiClient wifi;
 HttpClient httpClient = HttpClient(wifi, hueHubIP);
-// change the values of these two in the arduino_serets.h file:
-char ssid[] = SECRET_SSID;
-char pass[] = SECRET_PASS;
 
 // a JSON object to hold the light state:
 JSONVar groupState;
@@ -91,9 +88,9 @@ void setup() {
   // attempt to connect to Wifi network:
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print("Attempting to connect to WPA SSID: ");
-    Serial.println(ssid);
+    Serial.println(SECRET_SSID);
     // Connect to WPA/WPA2 network:
-    WiFi.begin(ssid, pass);
+    WiFi.begin(SECRET_SSID, SECRET_PASS);
     delay(2000);
   }
 
