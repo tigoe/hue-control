@@ -6,6 +6,7 @@ These examples show how to control a Philips Hue hub from An Arduino MKR1000, MK
 
 * [ArduinoHTTPClient-example](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/ArduinoHTTPClient-example) Shows how to turn a light on or off.
 * [ArduinoHueCT](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/ArduinoHueCT) Shows how to change the color temperature on those lights that support CT control. 
+* [ArduinoGroupControl](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/ArduinoGroupControl) - Shows how to change the properties of a group. Uses a rotary encoder and the Arduino_JSON library
 * [ArduinoHueCTWithSensor](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/ArduinoHueCTWithSensor) Shows how to change the color temperature on those lights that support CT control using a TCS34725 color sensor.
 * [HueBlinkMultipleHubs](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/HueBlinkMultipleHubs) - shows how to control multiple Hue hubs from the same Arduino
 * [HueBlinkWithJson](https://github.com/tigoe/hue-control/tree/main/ArduinoExamples/HueBlinkWithJson) - shows how to use the Arduino_JSON library to form your request.
@@ -17,6 +18,8 @@ All sketches use these libraries that you can install through the Library manage
 
 * WiFi101 (for MKR1000)
 * WiFiNINA (for MKR1010 or Nano 33 IoT)
+* WiFis3 (for Uno v.4 )
+* WiFi (for Nano ESP32)
 * ArduinoHttpClient 
 * Arduino_JSON (for the "withJSON" examples)
 
