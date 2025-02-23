@@ -1,7 +1,9 @@
 /* Hue Group state control example for ArduinoHttpClient library
 
-   Uses ArduinoHttpClient library to control Philips Hue
-   For more on Hue developer API see http://developer.meethue.com
+  Uses ArduinoHttpClient library to control Philips Hue
+  Uses Hue API v.1
+  For more on Hue developer API see http://developer.meethue.com
+
 
   To control a group, the Hue expects a HTTP PUT request to:
   http://hue.hub.address/api/hueUserName/groups/groupNumber/action
