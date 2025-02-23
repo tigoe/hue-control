@@ -1,7 +1,8 @@
 /* Hue color temperature control example for ArduinoHttpClient library
 
-   Uses ArduinoHttpClient library to control Philips Hue
-   For more on Hue developer API see http://developer.meethue.com
+  Uses ArduinoHttpClient library to control Philips Hue
+  Uses Hue API v.1
+  For more on Hue developer API see http://developer.meethue.com
 
   To control a light, the Hue expects a HTTP PUT request to:
 
@@ -21,70 +22,68 @@
 
   #define SECRET_SSID "ssid"    
   #define SECRET_PASS "password"
+  #define SECRET_HUBAPPKEY "your_hue_app_key"
 
-   modified 1 Mar 2022
+   modified 23 Feb 2025
    by Tom Igoe (tigoe) from HueBlink example
 */
 
-#include <SPI.h>
-
 //#include <WiFi101.h>  // for MKR1000
-#include <WiFiNINA.h>   // for Nano 33 IoT, MKR1010
+#include <WiFiNINA.h>  // for Nano 33 IoT, MKR1010
 #include <ArduinoHttpClient.h>
 #include "arduino_secrets.h"
 
-int status = WL_IDLE_STATUS;      // the Wifi radio's status
-char hueHubIP[] = "192.168.0.4";  // IP address of the HUE bridge
-String hueUserName = "yourhuehubusername"; // hue bridge username
+char hueHubIP[] = "172.22.151.183";  // IP address of the HUE bridge
 
 // make a wifi instance and a HttpClient instance:
 WiFiClient wifi;
 HttpClient httpClient = HttpClient(wifi, hueHubIP);
-// change the values of these two in the arduino_serets.h file:
-char ssid[] = SECRET_SSID;
-char pass[] = SECRET_PASS;
 
-int colorTemp = 2000; // color temperature to set the light to
-int increment = 100;  // increment of CT change
+int colorTemp = 2000;  // color temperature to set the light to
+int increment = 100;   // increment of CT change
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
-  while (!Serial); // wait for serial port to connect.
+  // wait for serial port to connect.
+  if (!Serial) delay(3000);
 
   // attempt to connect to Wifi network:
-  while ( status != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) {
     Serial.print("Attempting to connect to WPA SSID: ");
-    Serial.println(ssid);
+    Serial.println(SECRET_SSID);
     // Connect to WPA/WPA2 network:
-    status = WiFi.begin(ssid, pass);
+    WiFi.begin(SECRET_SSID, SECRET_PASS);
     delay(2000);
   }
 
   // you're connected now, so print out the data:
-  Serial.print("You're connected to the network IP = ");
-  IPAddress ip = WiFi.localIP();
-  Serial.println(ip);
+  Serial.println("Connected to the network: " + String(SECRET_SSID));
+  Serial.println("IP:  ");
+  Serial.println(WiFi.localIP());
 }
 
 void loop() {
   // add an increment to the color temperature:
   colorTemp += increment;
   Serial.println("Color temp: " + String(colorTemp));
-  // convert color temp to mired value:
-  String mired = String(1000000 / colorTemp);
-  Serial.println("mired: " + mired);
-  // send the change request:
-  sendRequest(3, "ct", mired);
-  // keep colorTemp bounded between 2000 and 6500:
-  if (colorTemp >= 6500 || colorTemp <= 2000) {
-    increment = -increment;
+  for (int lampNum = 1; lampNum < 7; lampNum++) {
+    // convert color temp to mired value:
+    String mired = String(1000000 / colorTemp);
+    Serial.println("mired: " + mired);
+    // send the change request:
+    sendRequest(lampNum, "ct", mired);
+    // keep colorTemp bounded between 2000 and 6500:
+    if (colorTemp >= 6500 || colorTemp <= 2000) {
+      increment = -increment;
+    }
+    delay(1000);
   }
 }
 
 void sendRequest(int light, String cmd, String value) {
   // make a String for the HTTP request path:
-  String request = "/api/" + hueUserName;
+  String request = "/api/" + String(SECRET_HUBAPPKEY);
   request += "/lights/";
   request += light;
   request += "/state/";
