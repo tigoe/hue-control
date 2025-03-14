@@ -70,7 +70,7 @@ Generally, querying the state of the device is done using GET commands, and chan
  /api/$HUE_USER/config
 ````
 
-And click GET.  To turn on light 1, enter the following in the URL field:
+And click PUT.  To turn on light 1, enter the following in the URL field:
 
 ````
 /api/$HUE_USER/lights/1/state
