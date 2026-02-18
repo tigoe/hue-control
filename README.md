@@ -26,7 +26,7 @@ Other than these, you'll need to know some HTML and JavaScript, and a text edito
 
 ## Connecting To Your Bridge
 
-Your app will need to be identified to your bridge using a unique username. [This example page](https://github.com/tigoe/hue-control/tree/main/client-example-js) will simplify that, if you know your bridge's IP address. You can't run this page from a remote server; download it and open the `index.html` file in a browser from your file system. This is because the Hue API version 1 uses HTTP, not HTTPS, and because your hub has a local IP address, and your web host does not . 
+Your app will need to be identified to your bridge using a unique username. [This example page](client-example-js/index.html) will simplify that, if you know your bridge's IP address. You can't run this page from a remote server; download it and open the `index.html` file in a browser from your file system. This is because the Hue API version 1 uses HTTP, not HTTPS, and because your hub has a local IP address, and your web host does not . 
 
 You can also follow the Hue developer site's [Getting Started instructions](http://www.developers.meethue.com/documentation/getting-started). 
 
