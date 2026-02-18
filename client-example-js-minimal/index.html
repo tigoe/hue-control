@@ -8,15 +8,15 @@
 <body>
   <h1>Hue Minimal JavaScript Example</h1>
     <p>This example uses the Hue API v.1 and the JS fetch command to make HTTP calls to a Hue bridge. </p>
-    <p><b>NOTE: This will not work when the page is served from a network outside your home.</b> To see it work, download this example and open the index.html page in a browser from your computer. </p>
+    <p><b>To make this page work, the computer on which you're viewing the page needs to be on the same local network as the Hue bridge that you wish to access.</b>.</p>
   <div id="request">
     <label for="address">Enter your hub's IP address here:</label>
     <input type="text" class="fields" name="address" id="address"><br>
-    <label for="address">Enter your userid here:</label>
+    <label for="address">If you have a userid, enter it here:</label>
     <input type="text" class="fields" name="userid" id="userid"><br>
-    <label for="address">Enter API command here:</label>
+    <label for="address">Enter the API command you want to execute here:</label>
     <textarea rows="2" cols="40" class="fields" name="command" id="command"></textarea><br>
-    <label for="address">Enter command data here:</label>
+    <label for="address">Enter the command data here:</label>
     <textarea rows="3" cols="40" class="fields" name="data" id="data"></textarea><br>
     <p id="url"></p>
   </div>
