@@ -8,40 +8,44 @@
 <body>
     <h1>Hue JavaScript Example</h1>
     <p>This example uses the Hue API v.1 and the JS fetch command to make HTTP calls to a Hue bridge. </p>
-    <p><b>NOTE: This will not work when the page is served from a network outside your home.</b> To see it work, download this example and open the index.html page in a browser from your computer. </p>
-    <a href="https://github.com/tigoe/hue-control/tree/main/client-example-js">See the HTML source code here</a>
+    <p><b>NOTE: To make this page work, the computer on which you're viewing the page needs to be on the same local network as the Hue bridge that you wish to access. </b></p>
+  <p><a href="https://github.com/tigoe/hue-control/tree/main/client-example-js">See the HTML source code here</a>
+    </p>  
+
+   <p><a href="https://tigoe.github.io/hue-control/client-example-js-minimal/">Here is a more minimal HTML/JSS page for controlling a bridge.</a>
+    </p>
     <div id="addressDiv">
-        <label for="address">Enter your hub's IP address here:</label>
+        <h2>Step 1: Your Bridge's address</h2>
+        <label for="address">Enter your bridge's IP address here:</label>
         <input type="text" name="address" id="address"><br>
     </div>
     <div>
-        When you first connect your app to a hue hub, the hub issues you an app username. It's a long string of text
-        that you'll use for subsequent requests.
-        <br>
-
-        <label for="username">If you have an app username, enter it here:
-        </label>
-        <input type="text" name="username" id="username">
-    </div>
-    <div>
-        To create a new user on a hub, you need to give the hue a devicetype. If you don't know what to put, use your
-        own name, as it's easier to keep track that way.
+        <h2>Step 2: Your Username</h2>
+        <h3>If You Have Never Connected to the Bridge</h3>
+        When you first connect your app to a hue bridge, the bridge issues you an <b>app username</b>. It's a long string of text
+        that you'll use for subsequent requests. To create a new user on a bridge, you need to give the hue a <b>devicetype</b>. The devicetype doesn't matter much for programming, so if you don't know what to put, use your name, as it's easier to keep track that way.
         <ol>
-            <li> enter devicetype: <input type="text" name="devicetype" id="devicetype"></li>
-            <li>press the button on the hub</li>
+            <li> To make a new username, enter devicetype: <input type="text" name="devicetype" id="devicetype"></li>
+            <li>then press the button on the bridge...</li>
             <li>then within 30 seconds, press this button: <input type="button" id="newuser" value="Make a new user">
             </li>
             <li>If you succeed, the results will appear below, and also in the username field.</li>
         </ol>
     </div>
     <div>
-        <p>The following functions require the hub IP address and a valid app username.
-        </p>
-        To get the whole system status as a long JSON object:
+    <h3>If You Have Already Connected to the Bridge</h3>
+        <p>The following functions require the bridge IP address and a valid app username.</p>
+
+                <label for="username">If you have an app username, enter it here:
+        </label>
+        <input type="text" name="username" id="username">
+
+        <p>To get the whole system status as a long JSON object, click this button:
         <input type="button" id="lights" value="System status">
+        </p>
     </div>
     <div>
-        To change an individual light:<br>
+        <h3>To change an individual light:</h3>
         <label for="lightNumber">Light Number</label>
         <input type="number" name="lightNumber" id="lightNumber" min="0" max="64" value="2"><br>
         <label for="brightness">Brightness</label>
@@ -51,7 +55,6 @@
     </div>
     <hr width=25% align="left">
 
-    <div id="responseDiv">Messages from the hub will appear here</div>
+    <div id="responseDiv"><b>Messages from the bridge will appear here</b></div>
 </body>
-
 </html>
