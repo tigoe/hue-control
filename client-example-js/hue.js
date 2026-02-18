@@ -1,7 +1,7 @@
 /*
 Hue control in plain JavaScript
 
-Controls brightness of one light on a hue hub. 
+Controls brightness of one light on a hue bridge. 
 You pick which light. Also shows the status of 
 all the lights.
 
@@ -10,15 +10,15 @@ modified 19 Feb 2022
 by Tom Igoe
 */
 
-let address = '';       // IP address of the Hue hub
-let username = '';      // username on the hub
-let requestUrl = 'http://ipaddress/api/';  // generic hub URL
+let address = '';       // IP address of the Hue bridge
+let username = '';      // username on the bridge
+let requestUrl = 'http://ipaddress/api/';  // generic bridge URL
 let lightNumber = 2;    // number of the light to control
 let lightState = {      // JSON with the state of the light
     on: true,
     bri: 0
 };
-// a div for responses from the Hue hub:
+// a div for responses from the Hue bridge:
 let responseDiv;
 // UI elements in the page:
 let slider, onButton, statusButton, newuserButton;
@@ -45,8 +45,11 @@ function setup() {
     responseDiv = document.getElementById('responseDiv');
 
     var bridgeAddress = getQueryString('ip');
-    const addressField = document.getElementById("address");
-    addressField.value = bridgeAddress;
+    if (bridgeAddress) {
+        const addressField = document.getElementById("address");
+        addressField.value = bridgeAddress;
+    setCreds();
+    }
 }
 
 // gets all the lights, via the endpoint
@@ -56,7 +59,7 @@ function getSystemStatus() {
     sendRequest(thisRequest, 'GET');
 }
 
-// set the credentials for the Hue hub:
+// set the credentials for the Hue bridge:
 function setCreds() {
     const addressField = document.getElementById("address");
     address = addressField.value;
@@ -72,7 +75,7 @@ function setCreds() {
         // make it into an anchor (<a>) element:
         const newLink = document.createElement("a");
         // add the text of the element and the href:
-        newLink.innerHTML = "Link to debug page for this hub";
+        newLink.innerHTML = "Link to debug page for this bridge";
         newLink.href = debugUrl;
         // make it open in a new page:
         newLink.target = "_blank";
@@ -94,7 +97,7 @@ function setLightNumber() {
     lightNumber = lightNum.value;
 }
 
-// create a new user when the hub button is pressed:
+// create a new user when the bridge button is pressed:
 function createUser(userid) {
     let devicetype = document.getElementById("devicetype").value;
     // if there is no value for device type, 
@@ -109,7 +112,7 @@ function createUser(userid) {
 }
 /*
 this function makes an HTTP PUT call to change the properties of the lights:
-HTTP PUT http://your.hue.hub.address/api/username/lights/lightNumber/state/
+HTTP PUT http://your.hue.bridge.address/api/username/lights/lightNumber/state/
 and the body has the light state:
 {
   on: true/false,
@@ -138,7 +141,7 @@ function changeLight(event) {
     } else {
         // if lightState is off, 
         // delete the bri property so as not to cause an 
-        // error in the hub's response:
+        // error in the bridge's response:
         delete lightState.bri;
     }
 
@@ -149,7 +152,7 @@ function changeLight(event) {
 
 // this function makes the actual request using fetch():
 function sendRequest(request, requestMethod, data) {
-    // fill in hub address and username from credentials fields:
+    // fill in bridge address and username from credentials fields:
     setCreds();
     // set the url for this request:
     let url = requestUrl;
@@ -157,7 +160,7 @@ function sendRequest(request, requestMethod, data) {
     // if there's no address set,
     // let the user know, and stop this function:
     if (!address) {
-        getResponse("please set the hub's IP address");
+        getResponse("please set the bridge's IP address");
         return;
     } else {
         // insert IP address into the url:
@@ -223,7 +226,7 @@ function parseResults(data) {
             console.log(JSONData[0].success.username);
             const userField = document.getElementById("username");
             // if there's not already a userfield value,
-            // insert the one just returned from the hub:
+            // insert the one just returned from the bridge:
             if (!userField.value) {
                 userField.value = JSONData[0].success.username;
             }
