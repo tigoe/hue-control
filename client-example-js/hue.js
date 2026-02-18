@@ -43,6 +43,10 @@ function setup() {
 
     //set the response div in a global variable for convenience:
     responseDiv = document.getElementById('responseDiv');
+
+    var bridgeAddress = getQueryString('ip');
+    const addressField = document.getElementById("address");
+    addressField.value = bridgeAddress;
 }
 
 // gets all the lights, via the endpoint
@@ -196,7 +200,7 @@ function sendRequest(request, requestMethod, data) {
 // function to call when you've got something to display:
 function getResponse(data) {
     responseDiv.innerHTML = data;
-   // parseResults(data);
+    // parseResults(data);
 }
 // this function is just a stub. It shows how to get
 // the results as JSON. If you press the button
@@ -205,24 +209,24 @@ function getResponse(data) {
 function parseResults(data) {
     // the results are always a string containing
     // a JSON object or an array
-   let JSONData;
-    try{
+    let JSONData;
+    try {
         JSONData = JSON.parse(data);
     } catch (err) {
         responseDiv.innerHTML = "Error: " + err;
     }
-    
+
 
     // if JSONData is an array, read the first element in it:
     if (Array.isArray(JSONData)) {
         if (JSONData[0].success) {
             console.log(JSONData[0].success.username);
             const userField = document.getElementById("username");
-           // if there's not already a userfield value,
-           // insert the one just returned from the hub:
+            // if there's not already a userfield value,
+            // insert the one just returned from the hub:
             if (!userField.value) {
-            userField.value = JSONData[0].success.username;
-           }
+                userField.value = JSONData[0].success.username;
+            }
         }
         // how to handle an error result:
         if (JSONData[0].error) {
@@ -236,6 +240,41 @@ function parseResults(data) {
         console.log(Object.keys(JSONData));
     }
 }
+
+/* 
+    This function gets the query string from the URL.
+    If a particular query item is given as the parameter,
+    it returns the value for that item. If no item 
+    is given, it returns the whole object. 
+*/
+function getQueryString(item) {
+    let result;
+    // get everything in the url after the ?, chop off the ?:
+    let queryString = window.location.search.substring(1);
+    // of there's no query string, return nothing
+    if (!queryString) return result;
+    // if there is a query string, make it JSON:
+    let queryObj = {};
+    // split it on the & chars:
+    let elements = queryString.split("&");
+    // iterate over the elements and make them objects:
+    for (let e = 0; e < elements.length; e++) {
+        // split each key-value pair on the = char:
+        let thisItem = elements[e].split("=");
+        // first item is the key, second is the value:
+        let key = thisItem[0];
+        let value = thisItem[1];
+        // add it to the queryObj:
+        queryObj[key] = value;
+        // return the value for the requested item:
+        if (key == item) {
+            result = value;
+        } 
+    }
+      if (!item) result = queryObj;
+    return result;
+};
+
 
 // listen for the HTML page to load fully:
 document.addEventListener('DOMContentLoaded', setup);
